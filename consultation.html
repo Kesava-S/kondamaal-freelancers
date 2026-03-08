@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Consultation | Kondamaal Freelancers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .form-section {
+            background: linear-gradient(180deg, #fbfbfd 0%, #ffffff 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .form-section h3 {
+            margin-bottom: 24px;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 12px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">Kondamaal Freelancers</a>
+            <div class="nav-links">
+                <a href="javascript:history.back()" class="btn btn-secondary"
+                    style="padding: 8px 16px; border-radius: 4px; border: 1px solid var(--border-subtle);">← Go Back</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="container" style="padding-top: 140px; padding-bottom: 60px; max-width: 800px;">
+        <div class="text-center mb-64 fade-in-up">
+            <h1 class="headline-l">Request a Consultation</h1>
+            <p class="subheadline"
+                style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; color: var(--text-secondary);">Fill out the
+                details below to schedule a call. We'll match you with the right talent to solve your automation needs.
+            </p>
+        </div>
+
+        <form action="#" method="POST" class="fade-in-up"
+            onsubmit="event.preventDefault(); alert('Consultation request submitted! A mentor will reach out to you shortly to confirm your booking.'); window.location.href='index.html';">
+
+            <!-- 1. Basic Company Information -->
+            <div class="form-section">
+                <h3>1. Basic Company Information</h3>
+                <div class="form-row">
+                    <div class="mb-24">
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-input" placeholder="e.g. Acme Corp" required>
+                    </div>
+                    <div class="mb-24">
+                        <label class="form-label">Website or Social Profile</label>
+                        <input type="text" class="form-input" placeholder="https://example.com" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="mb-24">
+                        <label class="form-label">Country & Time Zone</label>
+                        <input type="text" class="form-input" placeholder="e.g. UK (GMT)" required>
+                    </div>
+                    <div class="mb-24">
+                        <label class="form-label">Industry Type</label>
+                        <input type="text" class="form-input" placeholder="e.g. E-commerce, Real Estate" required>
+                    </div>
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Brief Description of the Business</label>
+                    <textarea class="form-textarea" rows="3" placeholder="What does your company do?"></textarea>
+                </div>
+            </div>
+
+            <!-- 2. Client Contact Details -->
+            <div class="form-section">
+                <h3>2. Client Contact Details</h3>
+                <div class="form-row">
+                    <div class="mb-24">
+                        <label class="form-label">Full Name of Primary Contact</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="mb-24">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="mb-24">
+                        <label class="form-label">Phone / WhatsApp Number</label>
+                        <input type="tel" class="form-input" required>
+                    </div>
+                    <div class="mb-24">
+                        <label class="form-label">Preferred Communication Platform</label>
+                        <select class="form-select">
+                            <option>Google Meet</option>
+                            <option>Zoom</option>
+                            <option>WhatsApp</option>
+                            <option>Microsoft Teams</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Project / Requirement Overview -->
+            <div class="form-section">
+                <h3>3. Project / Requirement Overview</h3>
+                <div class="mb-24">
+                    <label class="form-label">What role or skill are you looking for?</label>
+                    <input type="text" class="form-input"
+                        placeholder="e.g. Automation, Lead management, Workflow setup, AI assistance">
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Brief description of the problem you want solved</label>
+                    <textarea class="form-textarea" rows="3"></textarea>
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Current tools or platforms you use</label>
+                    <input type="text" class="form-input"
+                        placeholder="e.g. Meta Ads, CRM, WhatsApp Business API, databases, etc.">
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Expected outcome or goal</label>
+                    <input type="text" class="form-input"
+                        placeholder="e.g. Automate leads, improve follow-ups, integrate AI">
+                </div>
+            </div>
+
+            <!-- 4. Technical Context -->
+            <div class="form-section">
+                <h3>4. Technical Context (if applicable)</h3>
+                <div class="mb-24">
+                    <label class="form-label">Platforms to be integrated</label>
+                    <input type="text" class="form-input"
+                        placeholder="e.g. Meta, WhatsApp, Instagram, website forms, CRM, etc.">
+                </div>
+                <div class="form-row">
+                    <div class="mb-24">
+                        <label class="form-label">Data storage preference</label>
+                        <select class="form-select">
+                            <option>Local Database</option>
+                            <option>Cloud Database</option>
+                            <option>No Preference</option>
+                        </select>
+                    </div>
+                    <div class="mb-24">
+                        <label class="form-label">Level of automation needed</label>
+                        <select class="form-select">
+                            <option>Basic Automation</option>
+                            <option>Intermediate</option>
+                            <option>Full Workflow Automation</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Engagement Expectations -->
+            <div class="form-section">
+                <h3>5. Engagement Expectations</h3>
+                <div class="form-row">
+                    <div class="mb-24">
+                        <label class="form-label">Estimated duration</label>
+                        <select class="form-select">
+                            <option>Short-term project</option>
+                            <option>Long-term engagement</option>
+                        </select>
+                    </div>
+                    <div class="mb-24">
+                        <label class="form-label">Preferred working hours (if any)</label>
+                        <input type="text" class="form-input" placeholder="e.g. 9 AM - 5 PM EST">
+                    </div>
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Budget range (optional but useful)</label>
+                    <input type="text" class="form-input" placeholder="e.g. $1000 - $3000">
+                </div>
+            </div>
+
+            <!-- 6. Consultation Call Logistics -->
+            <div class="form-section">
+                <h3>6. Consultation Call Logistics</h3>
+                <div class="form-row">
+                    <div class="mb-24">
+                        <label class="form-label">Preferred Date and Time</label>
+                        <input type="datetime-local" class="form-input">
+                    </div>
+                    <div class="mb-24">
+                        <label class="form-label">Backup Time Slot</label>
+                        <input type="datetime-local" class="form-input">
+                    </div>
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Number of people joining from your side</label>
+                    <input type="number" class="form-input" min="1" value="1">
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Any documents or reference materials (Link)</label>
+                    <input type="url" class="form-input" placeholder="e.g. Google Drive link to workflow diagrams">
+                </div>
+                <div class="mb-24"
+                    style="background: var(--accent-glow); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--accent);">
+                    <label class="form-label" style="color: var(--accent); font-weight: 600;">Specific Talent Preference
+                        (or leave empty for recommendation)</label>
+                    <input type="text" id="talentPreference" class="form-input"
+                        placeholder="We will route you to the best match!">
+                </div>
+            </div>
+
+            <!-- 7. Additional Notes -->
+            <div class="form-section">
+                <h3>⭐ 7. Additional Notes</h3>
+                <div class="mb-24">
+                    <label class="form-label">Pain points you are facing right now</label>
+                    <textarea class="form-textarea" rows="2"></textarea>
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Current manual workflow (if you can explain it)</label>
+                    <textarea class="form-textarea" rows="2"></textarea>
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Competitors or examples you like</label>
+                    <textarea class="form-textarea" rows="2"></textarea>
+                </div>
+                <div class="mb-24">
+                    <label class="form-label">Any confidentiality requirements?</label>
+                    <input type="text" class="form-input" placeholder="e.g. NDA required before call">
+                </div>
+            </div>
+
+            <div class="text-center mt-40">
+                <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 14px 40px;">Submit
+                    Consultation Request</button>
+            </div>
+
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top: 60px;">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <a href="index.html" class="logo mb-24" style="color: var(--text-primary);">Kondamaal
+                Freelancers</a>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">&copy; 2025 Kondamaal Freelancers Talent Pool by
+                Automaitee
+                Digital</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Pre-fill talent name if it exists in the URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const talentParam = params.get('talent');
+            if (talentParam) {
+                const talentInput = document.getElementById('talentPreference');
+                if (talentInput) {
+                    talentInput.value = talentParam;
+                    // Optional: make it read-only if you want to lock it in
+                    // talentInput.readOnly = true;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

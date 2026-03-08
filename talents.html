@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Talent | Kondamaal Freelancers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">Kondamaal Freelancers</a>
+            <div class="nav-links">
+                <a href="testimonials.html">Testimonials</a>
+                <a href="index.html" class="btn btn-secondary"
+                    style="padding: 8px 16px; border-radius: 4px; border: 1px solid var(--border-subtle);">Go Back</a>
+            </div>
+        </div>
+    </nav>
+    <section class="container" style="padding-top: 140px; padding-bottom: 60px;">
+        <div class="text-center mb-64 fade-in-up">
+            <h1 class="headline-l">Available Talent Pool</h1>
+            <p class="subheadline" style="max-width: 600px; margin: 0 auto;">Meet our curated selection of
+                high-performing students ready for your business with AI skills.</p>
+        </div>
+
+        <div class="grid grid-2" style="max-width: 800px; margin: 0 auto;">
+            <!-- Talent 1 -->
+            <div class="card fade-in-up" style="display: flex; flex-direction: column; text-align: center;">
+                <div
+                    style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-secondary); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 1px solid var(--border-subtle); overflow: hidden;">
+                    <img src="assets/img/muthu.jpg" alt="Muthu Kumar M"
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        onerror="this.style.display='none'; this.parentElement.innerText='👨🏽‍💻'">
+                </div>
+                <h3>Muthu Kumar M</h3>
+                <p style="color: var(--accent); font-weight: 500; font-size: 0.9rem; margin-bottom: 16px;">Digital
+                    Marketing
+                    Automation Specialist</p>
+
+                <a href="muthukumar-portfolio.html" class="btn btn-secondary"
+                    style="width: 100%; margin-top: auto;">View
+                    Portfolio</a>
+            </div>
+
+            <!-- Talent 2 -->
+            <div class="card fade-in-up"
+                style="transition-delay: 0.1s; display: flex; flex-direction: column; text-align: center;">
+                <div
+                    style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-secondary); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 1px solid var(--border-subtle); overflow: hidden;">
+                    <img src="assets/img/sakthivel.jpg" alt="Sakthivel M"
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        onerror="this.style.display='none'; this.parentElement.innerText='👨🏻‍💻'">
+                </div>
+                <h3>Sakthivel M</h3>
+                <p style="color: var(--accent); font-weight: 500; font-size: 0.9rem; margin-bottom: 16px;">Digital
+                    Marketing
+                    Automation Specialist</p>
+                <a href="sakthivel-portfolio.html" class="btn btn-secondary" style="width: 100%; margin-top: auto;">View
+                    Portfolio</a>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top: 60px;">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <a href="index.html" class="logo mb-24" style="color: var(--text-primary);">Kondamaal Freelancers</a>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">&copy; 2025 Kondamaal Freelancers Talent Pool by
+                Automaitee
+                Digital</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <!-- Popup Modal -->
+    <div id="bookingPopup"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+        <div class="card"
+            style="max-width: 400px; padding: 32px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin: 20px;">
+            <div style="font-size: 2rem; margin-bottom: 16px;">💡</div>
+            <h3 style="margin-bottom: 16px;">Next Steps</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; line-height: 1.5;">Please
+                select the talent you are interested in before booking a call, so that the respective candidate can also
+                be scheduled to join the call and address your queries.</p>
+            <button class="btn btn-primary" style="width: 100%;"
+                onclick="document.getElementById('bookingPopup').style.display='none'">Got it</button>
+        </div>
+    </div>
+
+    <script>
+        // Check if user came from 'Book a Call' CTA
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('book') === 'true') {
+                const popup = document.getElementById('bookingPopup');
+                popup.style.display = 'flex';
+                // Remove parameter from URL cleanly without reloading
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        });
+    </script>
+</body>
+
+</html>
