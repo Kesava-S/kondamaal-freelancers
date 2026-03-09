@@ -35,6 +35,55 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Submission overlay */
+        #submit-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        #submit-overlay.active { display: flex; }
+        #submit-overlay .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 48px;
+            text-align: center;
+            max-width: 420px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+        }
+        #submit-overlay .icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        #submit-overlay h2 { margin: 0 0 10px; font-size: 1.4rem; }
+        #submit-overlay p  { margin: 0 0 24px; color: #555; font-size: 0.95rem; line-height: 1.6; }
+        #submit-overlay .btn-home {
+            display: inline-block;
+            background: var(--accent, #0071e3);
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Spinner for submitting state */
+        .spinner {
+            display: inline-block;
+            width: 18px; height: 18px;
+            border: 3px solid rgba(255,255,255,0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8M6D62SDJ"></script>
@@ -42,12 +91,22 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-D8M6D62SDJ');
     </script>
 </head>
 
 <body>
+
+    <!-- Success / Error Overlay -->
+    <div id="submit-overlay">
+        <div class="card">
+            <div class="icon" id="overlay-icon">✅</div>
+            <h2 id="overlay-title">Request Submitted!</h2>
+            <p id="overlay-msg">Thank you! A mentor will reach out to you shortly to confirm your consultation.</p>
+            <a href="index.html" class="btn-home">← Back to Home</a>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-content">
@@ -69,8 +128,7 @@
             </p>
         </div>
 
-        <form action="#" method="POST" class="fade-in-up"
-            onsubmit="event.preventDefault(); alert('Consultation request submitted! A mentor will reach out to you shortly to confirm your booking.'); window.location.href='index.html';">
+        <form id="consultationForm" class="fade-in-up">
 
             <!-- 1. Basic Company Information -->
             <div class="form-section">
@@ -78,26 +136,26 @@
                 <div class="form-row">
                     <div class="mb-24">
                         <label class="form-label">Company Name</label>
-                        <input type="text" class="form-input" placeholder="e.g. Acme Corp" required>
+                        <input type="text" name="companyName" class="form-input" placeholder="e.g. Acme Corp" required>
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Website or Social Profile</label>
-                        <input type="text" class="form-input" placeholder="https://example.com" required>
+                        <input type="text" name="website" class="form-input" placeholder="https://example.com">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="mb-24">
-                        <label class="form-label">Country & Time Zone</label>
-                        <input type="text" class="form-input" placeholder="e.g. UK (GMT)" required>
+                        <label class="form-label">Country &amp; Time Zone</label>
+                        <input type="text" name="countryTimezone" class="form-input" placeholder="e.g. UK (GMT)" required>
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Industry Type</label>
-                        <input type="text" class="form-input" placeholder="e.g. E-commerce, Real Estate" required>
+                        <input type="text" name="industry" class="form-input" placeholder="e.g. E-commerce, Real Estate" required>
                     </div>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Brief Description of the Business</label>
-                    <textarea class="form-textarea" rows="3" placeholder="What does your company do?"></textarea>
+                    <textarea name="businessDescription" class="form-textarea" rows="3" placeholder="What does your company do?"></textarea>
                 </div>
             </div>
 
@@ -107,21 +165,21 @@
                 <div class="form-row">
                     <div class="mb-24">
                         <label class="form-label">Full Name of Primary Contact</label>
-                        <input type="text" class="form-input" required>
+                        <input type="text" name="name" class="form-input" required>
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Email Address</label>
-                        <input type="email" class="form-input" required>
+                        <input type="email" name="email" class="form-input" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="mb-24">
                         <label class="form-label">Phone / WhatsApp Number</label>
-                        <input type="tel" class="form-input" required>
+                        <input type="tel" name="whatsapp" class="form-input" required>
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Preferred Communication Platform</label>
-                        <select class="form-select">
+                        <select name="commPlatform" class="form-select">
                             <option>Google Meet</option>
                             <option>Zoom</option>
                             <option>WhatsApp</option>
@@ -136,21 +194,21 @@
                 <h3>3. Project / Requirement Overview</h3>
                 <div class="mb-24">
                     <label class="form-label">What role or skill are you looking for?</label>
-                    <input type="text" class="form-input"
+                    <input type="text" name="roleSkill" class="form-input"
                         placeholder="e.g. Automation, Lead management, Workflow setup, AI assistance">
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Brief description of the problem you want solved</label>
-                    <textarea class="form-textarea" rows="3"></textarea>
+                    <textarea name="problemDescription" class="form-textarea" rows="3"></textarea>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Current tools or platforms you use</label>
-                    <input type="text" class="form-input"
+                    <input type="text" name="currentTools" class="form-input"
                         placeholder="e.g. Meta Ads, CRM, WhatsApp Business API, databases, etc.">
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Expected outcome or goal</label>
-                    <input type="text" class="form-input"
+                    <input type="text" name="goal" class="form-input"
                         placeholder="e.g. Automate leads, improve follow-ups, integrate AI">
                 </div>
             </div>
@@ -160,13 +218,13 @@
                 <h3>4. Technical Context (if applicable)</h3>
                 <div class="mb-24">
                     <label class="form-label">Platforms to be integrated</label>
-                    <input type="text" class="form-input"
+                    <input type="text" name="platformsToIntegrate" class="form-input"
                         placeholder="e.g. Meta, WhatsApp, Instagram, website forms, CRM, etc.">
                 </div>
                 <div class="form-row">
                     <div class="mb-24">
                         <label class="form-label">Data storage preference</label>
-                        <select class="form-select">
+                        <select name="dataStorage" class="form-select">
                             <option>Local Database</option>
                             <option>Cloud Database</option>
                             <option>No Preference</option>
@@ -174,7 +232,7 @@
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Level of automation needed</label>
-                        <select class="form-select">
+                        <select name="automationLevel" class="form-select">
                             <option>Basic Automation</option>
                             <option>Intermediate</option>
                             <option>Full Workflow Automation</option>
@@ -189,19 +247,19 @@
                 <div class="form-row">
                     <div class="mb-24">
                         <label class="form-label">Estimated duration</label>
-                        <select class="form-select">
+                        <select name="duration" class="form-select">
                             <option>Short-term project</option>
                             <option>Long-term engagement</option>
                         </select>
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Preferred working hours (if any)</label>
-                        <input type="text" class="form-input" placeholder="e.g. 9 AM - 5 PM EST">
+                        <input type="text" name="workingHours" class="form-input" placeholder="e.g. 9 AM - 5 PM EST">
                     </div>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Budget range (optional but useful)</label>
-                    <input type="text" class="form-input" placeholder="e.g. $1000 - $3000">
+                    <input type="text" name="budget" class="form-input" placeholder="e.g. $1000 - $3000">
                 </div>
             </div>
 
@@ -211,26 +269,26 @@
                 <div class="form-row">
                     <div class="mb-24">
                         <label class="form-label">Preferred Date and Time</label>
-                        <input type="datetime-local" class="form-input">
+                        <input type="datetime-local" name="preferredDateTime" class="form-input">
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Backup Time Slot</label>
-                        <input type="datetime-local" class="form-input">
+                        <input type="datetime-local" name="backupDateTime" class="form-input">
                     </div>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Number of people joining from your side</label>
-                    <input type="number" class="form-input" min="1" value="1">
+                    <input type="number" name="attendees" class="form-input" min="1" value="1">
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Any documents or reference materials (Link)</label>
-                    <input type="url" class="form-input" placeholder="e.g. Google Drive link to workflow diagrams">
+                    <input type="url" name="referenceLink" class="form-input" placeholder="e.g. Google Drive link to workflow diagrams">
                 </div>
                 <div class="mb-24"
                     style="background: var(--accent-glow); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--accent);">
                     <label class="form-label" style="color: var(--accent); font-weight: 600;">Specific Talent Preference
                         (or leave empty for recommendation)</label>
-                    <input type="text" id="talentPreference" class="form-input"
+                    <input type="text" id="talentPreference" name="talentPreference" class="form-input"
                         placeholder="We will route you to the best match!">
                 </div>
             </div>
@@ -240,25 +298,26 @@
                 <h3>⭐ 7. Additional Notes</h3>
                 <div class="mb-24">
                     <label class="form-label">Pain points you are facing right now</label>
-                    <textarea class="form-textarea" rows="2"></textarea>
+                    <textarea name="painPoints" class="form-textarea" rows="2"></textarea>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Current manual workflow (if you can explain it)</label>
-                    <textarea class="form-textarea" rows="2"></textarea>
+                    <textarea name="manualWorkflow" class="form-textarea" rows="2"></textarea>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Competitors or examples you like</label>
-                    <textarea class="form-textarea" rows="2"></textarea>
+                    <textarea name="competitors" class="form-textarea" rows="2"></textarea>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Any confidentiality requirements?</label>
-                    <input type="text" class="form-input" placeholder="e.g. NDA required before call">
+                    <input type="text" name="confidentiality" class="form-input" placeholder="e.g. NDA required before call">
                 </div>
             </div>
 
             <div class="text-center mt-40">
-                <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 14px 40px;">Submit
-                    Consultation Request</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="font-size: 1.1rem; padding: 14px 40px;">
+                    Submit Consultation Request
+                </button>
             </div>
 
         </form>
@@ -267,30 +326,13 @@
     <!-- Footer -->
     <footer style="margin-top: 60px;">
         <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-            <a href="index.html" class="logo mb-24" style="color: var(--text-primary);">Kondamaal
-                Freelancers</a>
-            <p style="font-size: 0.9rem; color: var(--text-secondary);">&copy; 2025 Kondamaal Freelancers Talent Pool by
-                Automaitee
-                Digital</p>
+            <a href="index.html" class="logo mb-24" style="color: var(--text-primary);">Kondamaal Freelancers</a>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">&copy; 2026 Kondamaal Freelancers Talent Pool by Automaitee Digital</p>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        // Pre-fill talent name if it exists in the URL
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const talentParam = params.get('talent');
-            if (talentParam) {
-                const talentInput = document.getElementById('talentPreference');
-                if (talentInput) {
-                    talentInput.value = talentParam;
-                    // Optional: make it read-only if you want to lock it in
-                    // talentInput.readOnly = true;
-                }
-            }
-        });
-    </script>
+    <script src="js/consultation-form.js"></script>
 </body>
 
 </html>
