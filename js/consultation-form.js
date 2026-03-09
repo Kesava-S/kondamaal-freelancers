@@ -4,7 +4,7 @@
  * POSTs all fields as JSON to the n8n webhook endpoint.
  */
 
-const WEBHOOK_URL = 'https://n8n.srv1198607.hstgr.cloud/webhook/book-consultation';
+const WEBHOOK_URL = 'https://n8n.srv1198607.hstgr.cloud/webhook/book-kondamaal-consultation';
 
 /* ─── Utility ─────────────────────────────────────────────────────────────── */
 
