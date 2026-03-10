@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ── Form sections ── */
         .form-section {
             background: linear-gradient(180deg, #fbfbfd 0%, #ffffff 100%);
             border: 1px solid var(--border-subtle);
@@ -15,7 +15,6 @@
             padding: 32px;
             margin-bottom: 32px;
         }
-
         .form-section h3 {
             margin-bottom: 24px;
             font-size: 1.25rem;
@@ -23,20 +22,55 @@
             border-bottom: 1px solid var(--border-subtle);
             padding-bottom: 12px;
         }
-
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
         }
-
         @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
+            .form-row { grid-template-columns: 1fr; }
         }
 
-        /* Submission overlay */
+        /* ── Required star ── */
+        .req {
+            color: #e53e3e;
+            margin-left: 3px;
+            font-size: 0.85em;
+        }
+
+        /* ── Field error message ── */
+        .field-error {
+            display: block;
+            font-size: 0.78rem;
+            color: #e53e3e;
+            margin-top: 5px;
+            min-height: 1em;
+            line-height: 1.4;
+        }
+
+        /* ── Input error state ── */
+        .input-error,
+        .input-error.form-input,
+        .input-error.form-textarea {
+            border-color: #e53e3e !important;
+            background-color: #fff8f8 !important;
+            outline-color: #e53e3e !important;
+        }
+
+        /* ── Optional badge ── */
+        .opt-badge {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #aaa;
+            background: #f3f3f5;
+            border-radius: 3px;
+            padding: 1px 6px;
+            margin-left: 6px;
+            vertical-align: middle;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── Submission overlay ── */
         #submit-overlay {
             display: none;
             position: fixed;
@@ -53,12 +87,10 @@
             padding: 40px 48px;
             text-align: center;
             max-width: 420px;
+            width: 90%;
             box-shadow: 0 8px 40px rgba(0,0,0,0.18);
         }
-        #submit-overlay .icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-        }
+        #submit-overlay .icon { font-size: 3rem; margin-bottom: 16px; }
         #submit-overlay h2 { margin: 0 0 10px; font-size: 1.4rem; }
         #submit-overlay p  { margin: 0 0 24px; color: #555; font-size: 0.95rem; line-height: 1.6; }
         #submit-overlay .btn-home {
@@ -72,7 +104,7 @@
             font-size: 0.95rem;
         }
 
-        /* Spinner for submitting state */
+        /* ── Spinner ── */
         .spinner {
             display: inline-block;
             width: 18px; height: 18px;
@@ -94,7 +126,6 @@
       gtag('config', 'G-D8M6D62SDJ');
     </script>
 </head>
-
 <body>
 
     <!-- Success / Error Overlay -->
@@ -118,64 +149,74 @@
         </div>
     </nav>
 
-    <!-- Header Section -->
+    <!-- Header -->
     <section class="container" style="padding-top: 140px; padding-bottom: 60px; max-width: 800px;">
         <div class="text-center mb-64 fade-in-up">
             <h1 class="headline-l">Request a Consultation</h1>
-            <p class="subheadline"
-                style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; color: var(--text-secondary);">Fill out the
-                details below to schedule a call. We'll match you with the right talent to solve your automation needs.
+            <p class="subheadline" style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; color: var(--text-secondary);">
+                Fill out the details below to schedule a call. We'll match you with the right talent to solve your automation needs.
+            </p>
+            <p style="margin-top: 12px; font-size: 0.85rem; color: var(--text-secondary);">
+                Fields marked with <span class="req">*</span> are required.
             </p>
         </div>
 
-        <form id="consultationForm" class="fade-in-up">
+        <form id="consultationForm" class="fade-in-up" novalidate>
 
-            <!-- 1. Basic Company Information -->
+            <!-- ── 1. Basic Company Information ── -->
             <div class="form-section">
                 <h3>1. Basic Company Information</h3>
                 <div class="form-row">
                     <div class="mb-24">
-                        <label class="form-label">Company Name</label>
-                        <input type="text" name="companyName" class="form-input" placeholder="e.g. Acme Corp" required>
+                        <label class="form-label">Company Name<span class="req">*</span></label>
+                        <input type="text" name="companyName" class="form-input" placeholder="e.g. Acme Corp">
+                        <span class="field-error" id="error-companyName"></span>
                     </div>
                     <div class="mb-24">
-                        <label class="form-label">Website or Social Profile</label>
+                        <label class="form-label">Website or Social Profile<span class="opt-badge">optional</span></label>
                         <input type="text" name="website" class="form-input" placeholder="https://example.com">
+                        <span class="field-error" id="error-website"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="mb-24">
-                        <label class="form-label">Country &amp; Time Zone</label>
-                        <input type="text" name="countryTimezone" class="form-input" placeholder="e.g. UK (GMT)" required>
+                        <label class="form-label">Country &amp; Time Zone<span class="req">*</span></label>
+                        <input type="text" name="countryTimezone" class="form-input" placeholder="e.g. India (IST), UK (GMT)">
+                        <span class="field-error" id="error-countryTimezone"></span>
                     </div>
                     <div class="mb-24">
-                        <label class="form-label">Industry Type</label>
-                        <input type="text" name="industry" class="form-input" placeholder="e.g. E-commerce, Real Estate" required>
+                        <label class="form-label">Industry Type<span class="req">*</span></label>
+                        <input type="text" name="industry" class="form-input" placeholder="e.g. E-commerce, Real Estate">
+                        <span class="field-error" id="error-industry"></span>
                     </div>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Brief Description of the Business</label>
+                    <label class="form-label">Brief Description of the Business<span class="opt-badge">optional</span></label>
                     <textarea name="businessDescription" class="form-textarea" rows="3" placeholder="What does your company do?"></textarea>
+                    <span class="field-error" id="error-businessDescription"></span>
                 </div>
             </div>
 
-            <!-- 2. Client Contact Details -->
+            <!-- ── 2. Client Contact Details ── -->
             <div class="form-section">
                 <h3>2. Client Contact Details</h3>
                 <div class="form-row">
                     <div class="mb-24">
-                        <label class="form-label">Full Name of Primary Contact</label>
-                        <input type="text" name="name" class="form-input" required>
+                        <label class="form-label">Full Name of Primary Contact<span class="req">*</span></label>
+                        <input type="text" name="name" class="form-input" placeholder="e.g. John Smith">
+                        <span class="field-error" id="error-name"></span>
                     </div>
                     <div class="mb-24">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" name="email" class="form-input" required>
+                        <label class="form-label">Email Address<span class="req">*</span></label>
+                        <input type="email" name="email" class="form-input" placeholder="e.g. john@company.com">
+                        <span class="field-error" id="error-email"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="mb-24">
-                        <label class="form-label">Phone / WhatsApp Number</label>
-                        <input type="tel" name="whatsapp" class="form-input" required>
+                        <label class="form-label">Phone / WhatsApp Number<span class="req">*</span></label>
+                        <input type="tel" name="whatsapp" class="form-input" placeholder="e.g. +44 7911 123456">
+                        <span class="field-error" id="error-whatsapp"></span>
                     </div>
                     <div class="mb-24">
                         <label class="form-label">Preferred Communication Platform</label>
@@ -189,45 +230,51 @@
                 </div>
             </div>
 
-            <!-- 3. Project / Requirement Overview -->
+            <!-- ── 3. Project / Requirement Overview ── -->
             <div class="form-section">
                 <h3>3. Project / Requirement Overview</h3>
                 <div class="mb-24">
-                    <label class="form-label">What role or skill are you looking for?</label>
+                    <label class="form-label">What role or skill are you looking for?<span class="req">*</span></label>
                     <input type="text" name="roleSkill" class="form-input"
                         placeholder="e.g. Automation, Lead management, Workflow setup, AI assistance">
+                    <span class="field-error" id="error-roleSkill"></span>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Brief description of the problem you want solved</label>
-                    <textarea name="problemDescription" class="form-textarea" rows="3"></textarea>
+                    <label class="form-label">Brief description of the problem you want solved<span class="req">*</span></label>
+                    <textarea name="problemDescription" class="form-textarea" rows="3"
+                        placeholder="Describe your current challenge in a few sentences…"></textarea>
+                    <span class="field-error" id="error-problemDescription"></span>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Current tools or platforms you use</label>
+                    <label class="form-label">Current tools or platforms you use<span class="opt-badge">optional</span></label>
                     <input type="text" name="currentTools" class="form-input"
                         placeholder="e.g. Meta Ads, CRM, WhatsApp Business API, databases, etc.">
+                    <span class="field-error" id="error-currentTools"></span>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Expected outcome or goal</label>
+                    <label class="form-label">Expected outcome or goal<span class="req">*</span></label>
                     <input type="text" name="goal" class="form-input"
                         placeholder="e.g. Automate leads, improve follow-ups, integrate AI">
+                    <span class="field-error" id="error-goal"></span>
                 </div>
             </div>
 
-            <!-- 4. Technical Context -->
+            <!-- ── 4. Technical Context ── -->
             <div class="form-section">
-                <h3>4. Technical Context (if applicable)</h3>
+                <h3>4. Technical Context <span style="font-size:0.85rem; font-weight:400; color:var(--text-secondary);">(if applicable)</span></h3>
                 <div class="mb-24">
-                    <label class="form-label">Platforms to be integrated</label>
+                    <label class="form-label">Platforms to be integrated<span class="opt-badge">optional</span></label>
                     <input type="text" name="platformsToIntegrate" class="form-input"
                         placeholder="e.g. Meta, WhatsApp, Instagram, website forms, CRM, etc.">
+                    <span class="field-error" id="error-platformsToIntegrate"></span>
                 </div>
                 <div class="form-row">
                     <div class="mb-24">
                         <label class="form-label">Data storage preference</label>
                         <select name="dataStorage" class="form-select">
+                            <option>No Preference</option>
                             <option>Local Database</option>
                             <option>Cloud Database</option>
-                            <option>No Preference</option>
                         </select>
                     </div>
                     <div class="mb-24">
@@ -241,7 +288,7 @@
                 </div>
             </div>
 
-            <!-- 5. Engagement Expectations -->
+            <!-- ── 5. Engagement Expectations ── -->
             <div class="form-section">
                 <h3>5. Engagement Expectations</h3>
                 <div class="form-row">
@@ -253,64 +300,79 @@
                         </select>
                     </div>
                     <div class="mb-24">
-                        <label class="form-label">Preferred working hours (if any)</label>
+                        <label class="form-label">Preferred working hours<span class="opt-badge">optional</span></label>
                         <input type="text" name="workingHours" class="form-input" placeholder="e.g. 9 AM - 5 PM EST">
+                        <span class="field-error" id="error-workingHours"></span>
                     </div>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Budget range (optional but useful)</label>
+                    <label class="form-label">Budget range<span class="opt-badge">optional</span></label>
                     <input type="text" name="budget" class="form-input" placeholder="e.g. $1000 - $3000">
+                    <span class="field-error" id="error-budget"></span>
                 </div>
             </div>
 
-            <!-- 6. Consultation Call Logistics -->
+            <!-- ── 6. Consultation Call Logistics ── -->
             <div class="form-section">
                 <h3>6. Consultation Call Logistics</h3>
                 <div class="form-row">
                     <div class="mb-24">
-                        <label class="form-label">Preferred Date and Time</label>
+                        <label class="form-label">Preferred Date and Time<span class="req">*</span></label>
                         <input type="datetime-local" name="preferredDateTime" class="form-input">
+                        <span class="field-error" id="error-preferredDateTime"></span>
                     </div>
                     <div class="mb-24">
-                        <label class="form-label">Backup Time Slot</label>
+                        <label class="form-label">Backup Time Slot<span class="opt-badge">optional</span></label>
                         <input type="datetime-local" name="backupDateTime" class="form-input">
+                        <span class="field-error" id="error-backupDateTime"></span>
                     </div>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Number of people joining from your side</label>
+                    <label class="form-label">Number of people joining from your side<span class="opt-badge">optional</span></label>
                     <input type="number" name="attendees" class="form-input" min="1" value="1">
+                    <span class="field-error" id="error-attendees"></span>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Any documents or reference materials (Link)</label>
+                    <label class="form-label">Any documents or reference materials (Link)<span class="opt-badge">optional</span></label>
                     <input type="url" name="referenceLink" class="form-input" placeholder="e.g. Google Drive link to workflow diagrams">
+                    <span class="field-error" id="error-referenceLink"></span>
                 </div>
                 <div class="mb-24"
                     style="background: var(--accent-glow); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--accent);">
-                    <label class="form-label" style="color: var(--accent); font-weight: 600;">Specific Talent Preference
-                        (or leave empty for recommendation)</label>
+                    <label class="form-label" style="color: var(--accent); font-weight: 600;">
+                        Specific Talent Preference<span class="opt-badge">optional</span>
+                    </label>
                     <input type="text" id="talentPreference" name="talentPreference" class="form-input"
                         placeholder="We will route you to the best match!">
+                    <span class="field-error" id="error-talentPreference"></span>
                 </div>
             </div>
 
-            <!-- 7. Additional Notes -->
+            <!-- ── 7. Additional Notes ── -->
             <div class="form-section">
-                <h3>⭐ 7. Additional Notes</h3>
+                <h3>⭐ 7. Additional Notes <span style="font-size:0.85rem; font-weight:400; color:var(--text-secondary);">(all optional — helps us prepare better)</span></h3>
                 <div class="mb-24">
                     <label class="form-label">Pain points you are facing right now</label>
-                    <textarea name="painPoints" class="form-textarea" rows="2"></textarea>
+                    <textarea name="painPoints" class="form-textarea" rows="2"
+                        placeholder="What's slowing your business down?"></textarea>
+                    <span class="field-error" id="error-painPoints"></span>
                 </div>
                 <div class="mb-24">
-                    <label class="form-label">Current manual workflow (if you can explain it)</label>
-                    <textarea name="manualWorkflow" class="form-textarea" rows="2"></textarea>
+                    <label class="form-label">Current manual workflow</label>
+                    <textarea name="manualWorkflow" class="form-textarea" rows="2"
+                        placeholder="Walk us through what you currently do manually…"></textarea>
+                    <span class="field-error" id="error-manualWorkflow"></span>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Competitors or examples you like</label>
-                    <textarea name="competitors" class="form-textarea" rows="2"></textarea>
+                    <textarea name="competitors" class="form-textarea" rows="2"
+                        placeholder="Any businesses or tools whose workflow you admire?"></textarea>
+                    <span class="field-error" id="error-competitors"></span>
                 </div>
                 <div class="mb-24">
                     <label class="form-label">Any confidentiality requirements?</label>
                     <input type="text" name="confidentiality" class="form-input" placeholder="e.g. NDA required before call">
+                    <span class="field-error" id="error-confidentiality"></span>
                 </div>
             </div>
 
@@ -334,5 +396,4 @@
     <script src="js/main.js"></script>
     <script src="js/consultation-form.js"></script>
 </body>
-
 </html>
