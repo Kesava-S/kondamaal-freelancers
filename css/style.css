@@ -340,7 +340,125 @@ footer {
     color: var(--text-secondary);
 }
 
+/* Floating Workforce Elements */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.floating-icon {
+    position: absolute;
+    opacity: 0.1;
+    animation: float-around 20s infinite ease-in-out;
+    width: 60px;
+    height: 60px;
+}
+
+.floating-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent);
+}
+
+@keyframes float-around {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(30px, -40px) rotate(15deg);
+    }
+
+    66% {
+        transform: translate(-20px, -20px) rotate(-10deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+.icon-1 {
+    top: 15%;
+    left: 8%;
+    animation-duration: 25s;
+    width: 80px;
+    height: 80px;
+}
+
+.icon-2 {
+    top: 65%;
+    left: 12%;
+    animation-duration: 32s;
+    width: 90px;
+    height: 90px;
+}
+
+.icon-3 {
+    top: 20%;
+    right: 10%;
+    animation-duration: 22s;
+    width: 100px;
+    height: 100px;
+}
+
+.icon-4 {
+    top: 75%;
+    right: 15%;
+    animation-duration: 28s;
+    width: 70px;
+    height: 70px;
+}
+
+.icon-5 {
+    top: 45%;
+    left: 20%;
+    animation-duration: 35s;
+    width: 50px;
+    height: 50px;
+    opacity: 0.05;
+}
+
+.icon-6 {
+    top: 35%;
+    right: 25%;
+    animation-duration: 20s;
+    width: 60px;
+    height: 60px;
+    opacity: 0.06;
+}
+
 /* Responsive */
+@media (max-width: 1024px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .headline-l {
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+    }
+
+    .headline-m {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 140px;
+        padding-bottom: 80px;
+    }
+}
+
 @media (max-width: 768px) {
 
     .grid-2,
@@ -350,11 +468,38 @@ footer {
     }
 
     .nav-links {
-        display: none;
-        /* simple mobile fallback for purely static mockup */
+        display: flex;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    .nav-links .btn {
+        padding: 6px 12px;
     }
 
     section {
-        padding: 80px 0;
+        padding: 60px 0;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .btn-group .btn {
+        width: 100%;
     }
 }
