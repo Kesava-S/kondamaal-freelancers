@@ -1,6 +1,6 @@
 /**
  * consultation-form.js
- * Handles validation + submission for the Kondamaal Freelancers consultation form.
+ * Handles validation + submission for the Kondamaal Talent Pool consultation form.
  *
  * REQUIRED FIELD DECISIONS (client-facing form):
  *  Section 1 — Company    : companyName ✓ | industry ✓ | countryTimezone ✓
