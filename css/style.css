@@ -446,8 +446,14 @@ footer {
 .floating-icon svg {
     width: 100%;
     height: 100%;
-    fill: var(--accent);
 }
+
+.icon-1 svg { fill: #3b82f6; } /* Blue */
+.icon-2 svg { fill: #10b981; } /* Green */
+.icon-3 svg { fill: #f59e0b; } /* Amber */
+.icon-4 svg { fill: #8b5cf6; } /* Purple */
+.icon-5 svg { fill: #6366f1; } /* Indigo */
+.icon-6 svg { fill: #ef4444; } /* Red */
 
 @keyframes float-around {
     0% {
@@ -516,6 +522,73 @@ footer {
     height: 60px;
     opacity: 0.06;
 }
+
+.icon-7 {
+    top: 50%;
+    right: 5%;
+    animation-duration: 30s;
+    width: 55px;
+    height: 55px;
+    opacity: 0.07;
+}
+
+.icon-7 svg { fill: #ef4444; } /* Subtle Red */
+
+.icon-8 {
+    top: 80%;
+    left: 40%;
+    animation-duration: 26s;
+    width: 45px;
+    height: 45px;
+    opacity: 0.05;
+}
+
+.icon-8 svg { fill: #10b981; } /* Subtle Green */
+
+.icon-9 {
+    top: 10%;
+    left: 50%;
+    animation-duration: 24s;
+    width: 65px;
+    height: 65px;
+    opacity: 0.06;
+}
+
+.icon-9 svg { fill: #f59e0b; } /* Subtle Amber */
+
+.icon-10 {
+    top: 60%;
+    right: 40%;
+    animation-duration: 29s;
+    width: 50px;
+    height: 50px;
+    opacity: 0.05;
+}
+
+.icon-10 svg { fill: #8b5cf6; } /* Subtle Purple */
+
+.icon-11 {
+    top: 25%;
+    left: 30%;
+    animation-duration: 27s;
+    width: 75px;
+    height: 75px;
+    opacity: 0.04;
+}
+
+.icon-11 svg { fill: #06b6d4; } /* Subtle Cyan */
+
+.icon-12 {
+     top: 85%;
+     right: 50%;
+     animation-duration: 31s;
+     width: 40px;
+     height: 40px;
+     opacity: 0.06;
+}
+
+.icon-12 svg { fill: #ec4899; } /* Subtle Pink */
+
 
 /* Responsive */
 @media (max-width: 1024px) {
