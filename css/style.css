@@ -154,9 +154,15 @@ h4 {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    display: block;
 }
 
 .nav-links {
@@ -640,6 +646,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .logo img {
+        height: 40px;
+    }
 
     .grid-2,
     .grid-3,
