@@ -106,9 +106,9 @@ h4 {
 }
 
 .badge-uk {
-    background: #fff5f5;
-    color: #c53030;
-    border: 1px solid #feb2b2;
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
 }
 
 
@@ -491,7 +491,7 @@ footer {
 .icon-3 svg { fill: #f59e0b; } /* Amber */
 .icon-4 svg { fill: #8b5cf6; } /* Purple */
 .icon-5 svg { fill: #6366f1; } /* Indigo */
-.icon-6 svg { fill: #ef4444; } /* Red */
+.icon-6 svg { fill: #22c55e; } /* Green */
 
 @keyframes float-around {
     0% {
@@ -570,7 +570,7 @@ footer {
     opacity: 0.07;
 }
 
-.icon-7 svg { fill: #ef4444; } /* Subtle Red */
+.icon-7 svg { fill: #10b981; } /* Emerald Green */
 
 .icon-8 {
     top: 80%;
