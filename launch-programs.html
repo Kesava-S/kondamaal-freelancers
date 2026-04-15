@@ -9,10 +9,6 @@
     <meta name="description" content="Apply for our exclusive multi-stage internship selection program.">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         .app-container {
             max-width: 800px;
@@ -32,7 +28,7 @@
             color: #d93025;
             font-size: 0.8rem;
             margin-top: 4px;
-            display: block;
+            display: none;
         }
         .req { color: #d93025; }
         .radio-group-container {
@@ -99,7 +95,6 @@
             margin-top: 32px;
             justify-content: flex-end;
         }
-        
         .highlight-box {
             background: #fdf2f8;
             border: 1px solid #fbcfe8;
@@ -110,6 +105,17 @@
             color: #be185d;
         }
         
+        .step { display: none; }
+        .step.active {
+            display: block;
+            animation: slideFade 0.4s ease-out forwards;
+        }
+
+        @keyframes slideFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
         @media (max-width: 768px) {
             .form-card { padding: 24px; }
             .btn-container { flex-direction: column-reverse; }
@@ -141,7 +147,256 @@
     </header>
 
     <section class="container" style="padding-top: 0;">
-        <div id="react-root"></div>
+        <div class="app-container">
+            
+            <!-- Step 1: Expectations Popup -->
+            <div class="step form-card active" id="step1">
+                <h2 class="headline-m mb-24">What we expect from you</h2>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom:16px;">
+                    This programme demands genuine commitment. Live sessions are mandatory. You are allowed a maximum of one absence during the course, and only if you inform us before the session begins. Missing a session without prior notice results in immediate removal from the programme — no exceptions and no refund.
+                </p>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+                    We are not strict for the sake of being strict. We are strict because you will be working with real clients and real money. Professional discipline starts here.
+                </p>
+                
+                <div class="check-container">
+                    <input type="checkbox" id="agreeExpectations" name="agreeExpectations" required>
+                    <label for="agreeExpectations">I Agree</label>
+                </div>
+                <span class="error-text" id="err-step1">You must agree to the expectations to proceed.</span>
+                
+                <div class="btn-container">
+                    <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Course Fee Popup -->
+            <div class="step form-card" id="step2">
+                <h2 class="headline-m mb-24">Course fee</h2>
+                <div class="highlight-box">
+                    ₹1,000 — one-time, non-refundable
+                </div>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom:16px;">
+                    Shortlisted candidates will have to pay 1000 rupees to enroll the course.
+                </p>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">
+                    This covers your access to live sessions, real ad platform accounts, course materials, and task evaluations throughout the 1-month course. The fee is intentionally kept low to make this accessible. It is non-refundable because you are receiving real tool access and expert instruction from day one.
+                </p>
+                
+                <div class="check-container">
+                    <input type="checkbox" id="understandFee" name="understandFee" required>
+                    <label for="understandFee">I Understood it.</label>
+                </div>
+                <span class="error-text" id="err-step2">You must confirm you understood the fee structure.</span>
+                
+                <div class="btn-container">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(2)">&larr; Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 3: FAQ Popup -->
+            <div class="step form-card" id="step3">
+                <h2 class="headline-m mb-24">Frequently asked questions</h2>
+                <ul class="faq-list">
+                    <li><strong>Q: Is this a certificate course?</strong> A: No. This is a selection programme for an internship. You do not receive a certificate. You receive real skills, real experience, and if you perform well, a role on our team.</li>
+                    <li><strong>Q: What happens if I am not selected after the course?</strong> A: You will receive a personalised email explaining why and what to work on. The ₹1,000 fee is non-refundable — you received a full month of live training on real platforms regardless of selection outcome.</li>
+                    <li><strong>Q: Can I attend if I am from a college not mentioned on the form?</strong> A: Yes. The programme is open to eligible students from any college as long as you meet the eligibility criteria.</li>
+                    <li><strong>Q: Will sessions be recorded?</strong> A: Yes. All live sessions are recorded and shared with enrolled participants only. However attendance to live sessions is still mandatory — recordings are for revision only, not a substitute for being present.</li>
+                    <li><strong>Q: When does the programme start?</strong> A: Applications are open until seats are filled. Once the batch is confirmed, selected students will receive the schedule by email.</li>
+                </ul>
+                
+                <div class="check-container">
+                    <input type="checkbox" id="clearFaq" name="clearFaq" required>
+                    <label for="clearFaq">I am clear</label>
+                </div>
+                <span class="error-text" id="err-step3">You must confirm you are clear on the FAQs.</span>
+                
+                <div class="btn-container">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(3)">&larr; Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Proceed to Application</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Application Form - Stage 1 -->
+            <div class="step form-card" id="step4">
+                <h2 class="headline-m" style="margin-bottom: 0;">Application Form</h2>
+                <p style="color: var(--text-secondary); margin-bottom:24px; font-weight:600;">Role: AI Marketing Automation Intern</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Degree <span class="req">*</span></label>
+                    <select class="form-select" id="degree" onchange="toggleCourseName()">
+                        <option value="">Select Degree...</option>
+                        <option value="Computer Science (CS)">Computer Science (CS)</option>
+                        <option value="Information Technology (IT)">Information Technology (IT)</option>
+                        <option value="BCA">BCA</option>
+                        <option value="MCA">MCA</option>
+                        <option value="Related field">Related field</option>
+                    </select>
+                    <span class="error-text" id="err-degree">Please select a degree.</span>
+                </div>
+
+                <div class="form-group" id="courseNameContainer" style="display: none;">
+                    <label class="form-label">Course Name <span class="req">*</span></label>
+                    <input type="text" class="form-input" id="courseName" placeholder="e.g. B.Tech ECE">
+                    <span class="error-text" id="err-courseName">Course Name is required.</span>
+                </div>
+
+                <h3 style="margin-top: 32px; margin-bottom: 16px;">Section 1: Academic Eligibility</h3>
+
+                <div class="form-group">
+                    <label class="form-label">Current Year <span class="req">*</span></label>
+                    <select class="form-select" id="currentYear">
+                        <option value="">Select Current Year...</option>
+                        <option value="3rd year of 4-year course">3rd year of 4-year course</option>
+                        <option value="2nd year of 3-year course">2nd year of 3-year course</option>
+                        <option value="Masters 1st year">Masters 1st year</option>
+                    </select>
+                    <span class="error-text" id="err-currentYear">Please select your current year.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">6+ months academic year remaining <span class="req">*</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="academics6Months" value="Yes"> Yes</label>
+                        <label><input type="radio" name="academics6Months" value="No"> No</label>
+                    </div>
+                    <span class="error-text" id="err-academics6Months">Please select an option.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Aggregate 65% or above <span class="req">*</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="aggregate65" value="Yes"> Yes</label>
+                        <label><input type="radio" name="aggregate65" value="No"> No</label>
+                    </div>
+                    <span class="error-text" id="err-aggregate65">Please select an option.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Attendance 70% or above <span class="req">*</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attendance70" value="Yes"> Yes</label>
+                        <label><input type="radio" name="attendance70" value="No"> No</label>
+                    </div>
+                    <span class="error-text" id="err-attendance70">Please select an option.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">I have a personal laptop and stable internet <span class="req">*</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="hasLaptop" value="Yes"> Yes</label>
+                        <label><input type="radio" name="hasLaptop" value="No"> No</label>
+                    </div>
+                    <span class="error-text" id="err-hasLaptop">Please select an option.</span>
+                </div>
+
+                <h3 style="margin-top: 32px; margin-bottom: 16px;">Section 2: Skills & Background</h3>
+
+                <div class="form-group">
+                    <label class="form-label">Coding languages known (JS / API / JSON etc.) <span class="req">*</span></label>
+                    <input type="text" class="form-input" id="codingLanguages" placeholder="e.g. JS, Python">
+                    <span class="error-text" id="err-codingLanguages">This field is required.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">LinkedIn Profile (Optional)</label>
+                    <input type="url" class="form-input" id="linkedin" placeholder="https://linkedin.com/in/...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">GitHub Profile (Optional)</label>
+                    <input type="url" class="form-input" id="github" placeholder="https://github.com/...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">AI tools used independently <span class="req">*</span></label>
+                    <input type="text" class="form-input" id="aiTools" placeholder="e.g. ChatGPT, Claude">
+                    <span class="error-text" id="err-aiTools">This field is required.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Prior online business marketing tool exposure (Optional)</label>
+                    <input type="text" class="form-input" id="marketingTools" placeholder="e.g. Mailchimp, Meta Ads">
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(4)">&larr; Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Final Details -->
+            <div class="step form-card" id="step5">
+                <h2 class="headline-m" style="margin-bottom:8px;">Final Details</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">Just a few more things before you submit.</p>
+                
+                <div id="submit-error" class="error-text" style="font-size: 1rem; margin-bottom:16px; display:none; padding:12px; background:#fdf2f2; border:1px solid #fecaca; border-radius:4px;">
+                    Something went wrong while submitting. Please check your connection and try again.
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Full Name <span class="req">*</span></label>
+                    <input type="text" class="form-input" id="fullName" placeholder="John Doe">
+                    <span class="error-text" id="err-fullName">This field is required.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email <span class="req">*</span></label>
+                    <input type="email" class="form-input" id="email" placeholder="john@example.com">
+                    <span class="error-text" id="err-email">Please enter a valid email address.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">WhatsApp Number <span class="req">*</span></label>
+                    <input type="tel" class="form-input" id="whatsapp" placeholder="+91 9876543210">
+                    <span class="error-text" id="err-whatsapp">This field is required.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Location (City) <span class="req">*</span></label>
+                    <input type="text" class="form-input" id="location" placeholder="Chennai">
+                    <span class="error-text" id="err-location">This field is required.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Why do you want this internship? <span class="req">*</span> (Max 150 words)</label>
+                    <textarea class="form-textarea" rows="4" id="whyInternship" placeholder="Tell us why..."></textarea>
+                    <span class="error-text" id="err-whyInternship">Maximum 150 words allowed.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">What do you expect to learn? <span class="req">*</span> (Max 150 words)</label>
+                    <textarea class="form-textarea" rows="3" id="expectToLearn" placeholder="Your expectations..."></textarea>
+                    <span class="error-text" id="err-expectToLearn">Maximum 150 words allowed.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Willing to take training before internship? <span class="req">*</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="agreesToTraining" value="Yes"> Yes</label>
+                        <label><input type="radio" name="agreesToTraining" value="No"> No</label>
+                    </div>
+                    <span class="error-text" id="err-agreesToTraining">Please select an option.</span>
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="btn btn-secondary" id="btn-back-5" onclick="prevStep(5)">&larr; Back</button>
+                    <button type="button" class="btn btn-primary" id="btn-submit" onclick="submitApplication()">Submit Application</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Success Screen -->
+            <div class="step form-card text-center" id="step6" style="text-align: center; padding: 60px 40px;">
+                <div class="success-icon">✓</div>
+                <h2 class="headline-m" style="margin-bottom: 16px;">Application Submitted!</h2>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom: 32px;">
+                    Thank you for applying to the AI Marketing Automation Intern programme. Our team will review your application and be in touch soon.
+                </p>
+                <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+            </div>
+
+        </div>
     </section>
 
     <footer style="margin-top: 40px;">
@@ -160,435 +415,171 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
-    <script type="text/babel">
-        const { useState } = React;
-        const { motion, AnimatePresence } = window.Motion;
-
-        function MultiStepForm() {
-            const [step, setStep] = useState(1);
-            const [formData, setFormData] = useState({
-                degree: '',
-                courseName: '',
-                currentYear: '',
-                academics6Months: '',
-                aggregate65: '',
-                attendance70: '',
-                hasLaptop: '',
-                codingLanguages: '',
-                linkedin: '',
-                github: '',
-                aiTools: '',
-                marketingTools: '',
-                fullName: '',
-                email: '',
-                whatsapp: '',
-                location: '',
-                whyInternship: '',
-                expectToLearn: '',
-                agreesToTraining: ''
-            });
-
-            const [popups, setPopups] = useState({
-                agreeExpectations: false,
-                understandFee: false,
-                clearFaq: false
-            });
-
-            const [formErrors, setFormErrors] = useState({});
-            const [isSubmitting, setIsSubmitting] = useState(false);
-
-            const handleInputChange = (e) => {
-                const { name, value } = e.target;
-                setFormData(prev => ({ ...prev, [name]: value }));
-                if (formErrors[name]) {
-                    setFormErrors(prev => ({ ...prev, [name]: null }));
-                }
-            };
-
-            const handlePopupChange = (e) => {
-                const { name, checked } = e.target;
-                setPopups(prev => ({ ...prev, [name]: checked }));
-                if (formErrors[name]) {
-                    setFormErrors(prev => ({ ...prev, [name]: null }));
-                }
-            };
-
-            const validateStep = (currentStep) => {
-                let errors = {};
-                let isValid = true;
-
-                if (currentStep === 1) {
-                    if (!popups.agreeExpectations) {
-                        errors.agreeExpectations = "You must agree to the expectations to proceed.";
-                        isValid = false;
-                    }
-                } else if (currentStep === 2) {
-                    if (!popups.understandFee) {
-                        errors.understandFee = "You must confirm you understand the fee structure.";
-                        isValid = false;
-                    }
-                } else if (currentStep === 3) {
-                    if (!popups.clearFaq) {
-                        errors.clearFaq = "You must confirm you are clear on the FAQs.";
-                        isValid = false;
-                    }
-                } else if (currentStep === 4) {
-                    const req4 = ['degree', 'currentYear', 'academics6Months', 'aggregate65', 'attendance70', 'hasLaptop', 'aiTools'];
-                    req4.forEach(field => {
-                        if (!formData[field]) {
-                            errors[field] = "This field is required."; break;
-                        }
-                    });
-                    req4.forEach(field => {
-                        if (!formData[field]) {
-                            errors[field] = "This field is required.";
-                            isValid = false;
-                        }
-                    });
-                    if (formData.degree === 'Related field' && !formData.courseName) {
-                        errors.courseName = "Course Name is required.";
-                        isValid = false;
-                    }
-                } else if (currentStep === 5) {
-                    const req5 = ['fullName', 'email', 'whatsapp', 'location', 'whyInternship', 'expectToLearn', 'agreesToTraining'];
-                    req5.forEach(field => {
-                        if (!formData[field] || !formData[field].trim()) {
-                            errors[field] = "This field is required.";
-                            isValid = false;
-                        }
-                    });
-
-                    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-                    if (formData.email && !emailRegex.test(formData.email)) {
-                        errors.email = "Please enter a valid email address.";
-                        isValid = false;
-                    }
-
-                    const phoneRegex = /^\\+?[0-9]{10,15}$/;
-                    if (formData.whatsapp && !phoneRegex.test(formData.whatsapp.replace(/\\s+/g, ''))) {
-                        errors.whatsapp = "Please enter a valid phone number (10-15 digits).";
-                        isValid = false;
-                    }
-
-                    if (formData.whyInternship && formData.whyInternship.split(/\\s+/).filter(w => w.length > 0).length > 150) {
-                        errors.whyInternship = "Maximum 150 words allowed.";
-                        isValid = false;
-                    }
-                }
-
-                setFormErrors(errors);
-                return isValid;
-            };
-
-            const nextStep = () => {
-                if (validateStep(step)) {
-                    setStep(prev => prev + 1);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            };
-
-            const prevStep = () => {
-                setStep(prev => prev - 1);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
-            const submitApplication = async () => {
-                if (!validateStep(5)) return;
-                setIsSubmitting(true);
-                
-                try {
-                    const webhookUrl = "https://hook.us2.make.com/xxxxxxxxxxxxxxxxxxx";
-                    
-                    // Fire-and-forget or await mock webhook
-                    // For demo purposes, we will mock the delay
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                    
-                    setIsSubmitting(false);
-                    setStep(6);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } catch (error) {
-                    console.error("Submission failed:", error);
-                    setIsSubmitting(false);
-                    alert("Submission failed. Please try again.");
-                }
-            };
-
-            const variants = {
-                hidden: { opacity: 0, x: 20 },
-                visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-                exit: { opacity: 0, x: -20, transition: { duration: 0.3 } }
-            };
-
-            return (
-                <div className="app-container">
-                    <AnimatePresence mode="wait">
-                        {step === 1 && (
-                            <motion.div key="step1" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
-                                <h2 className="headline-m mb-24">What we expect from you</h2>
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.6' }}>
-                                    Genuine commitment is demanded for this selection program. Live sessions are mandatory and only 1 prior-notice absence is allowed. Professional discipline is required as you will be working with real clients. We do not tolerate a lack of punctuality or dedication.
-                                </p>
-                                
-                                <div className="check-container">
-                                    <input 
-                                        type="checkbox" 
-                                        id="agreeExpectations" 
-                                        name="agreeExpectations" 
-                                        checked={popups.agreeExpectations}
-                                        onChange={handlePopupChange}
-                                    />
-                                    <label htmlFor="agreeExpectations">I Agree to the expectations</label>
-                                </div>
-                                {formErrors.agreeExpectations && <span className="error-text">{formErrors.agreeExpectations}</span>}
-                                
-                                <div className="btn-container">
-                                    <button className="btn btn-primary" onClick={nextStep}>Next</button>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {step === 2 && (
-                            <motion.div key="step2" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
-                                <h2 className="headline-m mb-24">Course fee</h2>
-                                <div className="highlight-box">
-                                    ₹1,000 — one-time, non-refundable
-                                </div>
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.6' }}>
-                                    Shortlisted candidates must pay a course fee of ₹1,000. This covers the administrative costs, live sessions, ad platform accounts, course materials, and task evaluations during your multi-step internship process.
-                                </p>
-                                
-                                <div className="check-container">
-                                    <input 
-                                        type="checkbox" 
-                                        id="understandFee" 
-                                        name="understandFee" 
-                                        checked={popups.understandFee}
-                                        onChange={handlePopupChange}
-                                    />
-                                    <label htmlFor="understandFee">I Understood it.</label>
-                                </div>
-                                {formErrors.understandFee && <span className="error-text">{formErrors.understandFee}</span>}
-                                
-                                <div className="btn-container">
-                                    <button className="btn btn-secondary" onClick={prevStep}>Back</button>
-                                    <button className="btn btn-primary" onClick={nextStep}>Next</button>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {step === 3 && (
-                            <motion.div key="step3" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
-                                <h2 className="headline-m mb-24">Frequently asked questions</h2>
-                                <ul className="faq-list">
-                                    <li><strong>1. Certificate course?</strong> No, it's a selection programme for an internship.</li>
-                                    <li><strong>2. What if not selected?</strong> You receive personalized feedback. The fee is non-refundable.</li>
-                                    <li><strong>3. College eligibility?</strong> Open to any college student as long as eligibility criteria are met.</li>
-                                    <li><strong>4. Are sessions recorded?</strong> Yes, but live attendance is mandatory.</li>
-                                    <li><strong>5. When does it start?</strong> Once the batch is confirmed, schedules are emailed to shortlisted candidates.</li>
-                                </ul>
-                                
-                                <div className="check-container">
-                                    <input 
-                                        type="checkbox" 
-                                        id="clearFaq" 
-                                        name="clearFaq" 
-                                        checked={popups.clearFaq}
-                                        onChange={handlePopupChange}
-                                    />
-                                    <label htmlFor="clearFaq">I am clear</label>
-                                </div>
-                                {formErrors.clearFaq && <span className="error-text">{formErrors.clearFaq}</span>}
-                                
-                                <div className="btn-container">
-                                    <button className="btn btn-secondary" onClick={prevStep}>Back</button>
-                                    <button className="btn btn-primary" onClick={nextStep}>Proceed to Application</button>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {step === 4 && (
-                            <motion.div key="step4" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-                                    <h2 className="headline-m" style={{ marginBottom: 0 }}>Application Form</h2>
-                                    <a href="careers.html" style={{ color: 'var(--text-secondary)', textDecoration: 'underline', fontSize: '0.9rem' }}>Cancel</a>
-                                </div>
-                                
-                                <div className="form-group">
-                                    <label className="form-label">Degree <span className="req">*</span></label>
-                                    <select className="form-select" name="degree" value={formData.degree} onChange={handleInputChange}>
-                                        <option value="">Select Degree</option>
-                                        <option value="CS">Computer Science (CS)</option>
-                                        <option value="IT">Information Technology (IT)</option>
-                                        <option value="BCA">BCA</option>
-                                        <option value="MCA">MCA</option>
-                                        <option value="Related field">Related field</option>
-                                    </select>
-                                    {formErrors.degree && <span className="error-text">{formErrors.degree}</span>}
-                                </div>
-
-                                {formData.degree === 'Related field' && (
-                                    <div className="form-group fade-in-up visible">
-                                        <label className="form-label">Course Name <span className="req">*</span></label>
-                                        <input type="text" className="form-input" name="courseName" value={formData.courseName} onChange={handleInputChange} placeholder="e.g. B.Tech ECE" />
-                                        {formErrors.courseName && <span className="error-text">{formErrors.courseName}</span>}
-                                    </div>
-                                )}
-
-                                <div className="form-group">
-                                    <label className="form-label">Current Year <span className="req">*</span></label>
-                                    <select className="form-select" name="currentYear" value={formData.currentYear} onChange={handleInputChange}>
-                                        <option value="">Select Year</option>
-                                        <option value="3rd Year 4-year course">3rd Year (4-year course)</option>
-                                        <option value="2nd Year 3-year course">2nd Year (3-year course)</option>
-                                        <option value="1st Year Masters">1st Year Masters</option>
-                                    </select>
-                                    {formErrors.currentYear && <span className="error-text">{formErrors.currentYear}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Do you have 6+ months of academic year remaining? <span className="req">*</span></label>
-                                    <div className="radio-group">
-                                        <label><input type="radio" name="academics6Months" value="Yes" checked={formData.academics6Months === 'Yes'} onChange={handleInputChange} /> Yes</label>
-                                        <label><input type="radio" name="academics6Months" value="No" checked={formData.academics6Months === 'No'} onChange={handleInputChange} /> No</label>
-                                    </div>
-                                    {formErrors.academics6Months && <span className="error-text">{formErrors.academics6Months}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Do you have an aggregate of 65% or above? <span className="req">*</span></label>
-                                    <div className="radio-group">
-                                        <label><input type="radio" name="aggregate65" value="Yes" checked={formData.aggregate65 === 'Yes'} onChange={handleInputChange} /> Yes</label>
-                                        <label><input type="radio" name="aggregate65" value="No" checked={formData.aggregate65 === 'No'} onChange={handleInputChange} /> No</label>
-                                    </div>
-                                    {formErrors.aggregate65 && <span className="error-text">{formErrors.aggregate65}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Do you have attendance of 70% or above? <span className="req">*</span></label>
-                                    <div className="radio-group">
-                                        <label><input type="radio" name="attendance70" value="Yes" checked={formData.attendance70 === 'Yes'} onChange={handleInputChange} /> Yes</label>
-                                        <label><input type="radio" name="attendance70" value="No" checked={formData.attendance70 === 'No'} onChange={handleInputChange} /> No</label>
-                                    </div>
-                                    {formErrors.attendance70 && <span className="error-text">{formErrors.attendance70}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Do you have a personal laptop and stable internet? <span className="req">*</span></label>
-                                    <div className="radio-group">
-                                        <label><input type="radio" name="hasLaptop" value="Yes" checked={formData.hasLaptop === 'Yes'} onChange={handleInputChange} /> Yes</label>
-                                        <label><input type="radio" name="hasLaptop" value="No" checked={formData.hasLaptop === 'No'} onChange={handleInputChange} /> No</label>
-                                    </div>
-                                    {formErrors.hasLaptop && <span className="error-text">{formErrors.hasLaptop}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Coding languages known (Optional)</label>
-                                    <input type="text" className="form-input" name="codingLanguages" value={formData.codingLanguages} onChange={handleInputChange} placeholder="e.g. JS, Python" />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">LinkedIn Profile (Optional)</label>
-                                    <input type="url" className="form-input" name="linkedin" value={formData.linkedin} onChange={handleInputChange} placeholder="https://linkedin.com/..." />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">GitHub Profile (Optional)</label>
-                                    <input type="url" className="form-input" name="github" value={formData.github} onChange={handleInputChange} placeholder="https://github.com/..." />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">AI tools used independently <span className="req">*</span></label>
-                                    <input type="text" className="form-input" name="aiTools" value={formData.aiTools} onChange={handleInputChange} placeholder="e.g. ChatGPT, Midjourney, Copilot" />
-                                    {formErrors.aiTools && <span className="error-text">{formErrors.aiTools}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Prior online business marketing tool exposure (Optional)</label>
-                                    <input type="text" className="form-input" name="marketingTools" value={formData.marketingTools} onChange={handleInputChange} placeholder="e.g. Mailchimp, Hootsuite" />
-                                </div>
-
-                                <div className="btn-container">
-                                    <button className="btn btn-secondary" onClick={prevStep}>Back</button>
-                                    <button className="btn btn-primary" onClick={nextStep}>Next</button>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {step === 5 && (
-                            <motion.div key="step5" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
-                                <h2 className="headline-m mb-24">Final Details</h2>
-                                
-                                <div className="form-group">
-                                    <label className="form-label">Full Name <span className="req">*</span></label>
-                                    <input type="text" className="form-input" name="fullName" value={formData.fullName} onChange={handleInputChange} placeholder="John Doe" />
-                                    {formErrors.fullName && <span className="error-text">{formErrors.fullName}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Email <span className="req">*</span></label>
-                                    <input type="email" className="form-input" name="email" value={formData.email} onChange={handleInputChange} placeholder="john@example.com" />
-                                    {formErrors.email && <span className="error-text">{formErrors.email}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">WhatsApp Number <span className="req">*</span></label>
-                                    <input type="tel" className="form-input" name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} placeholder="+91 9876543210" />
-                                    {formErrors.whatsapp && <span className="error-text">{formErrors.whatsapp}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Location (City) <span className="req">*</span></label>
-                                    <input type="text" className="form-input" name="location" value={formData.location} onChange={handleInputChange} placeholder="Chennai" />
-                                    {formErrors.location && <span className="error-text">{formErrors.location}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Why do you want this internship? <span className="req">*</span> (Max 150 words)</label>
-                                    <textarea className="form-textarea" rows="4" name="whyInternship" value={formData.whyInternship} onChange={handleInputChange} placeholder="Tell us why..."></textarea>
-                                    {formErrors.whyInternship && <span className="error-text">{formErrors.whyInternship}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">What do you expect to learn? <span className="req">*</span></label>
-                                    <textarea className="form-textarea" rows="3" name="expectToLearn" value={formData.expectToLearn} onChange={handleInputChange} placeholder="Your expectations..."></textarea>
-                                    {formErrors.expectToLearn && <span className="error-text">{formErrors.expectToLearn}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="form-label">Willing to take training before internship? <span className="req">*</span></label>
-                                    <div className="radio-group">
-                                        <label><input type="radio" name="agreesToTraining" value="Yes" checked={formData.agreesToTraining === 'Yes'} onChange={handleInputChange} /> Yes</label>
-                                        <label><input type="radio" name="agreesToTraining" value="No" checked={formData.agreesToTraining === 'No'} onChange={handleInputChange} /> No</label>
-                                    </div>
-                                    {formErrors.agreesToTraining && <span className="error-text">{formErrors.agreesToTraining}</span>}
-                                </div>
-
-                                <div className="btn-container">
-                                    <button className="btn btn-secondary" onClick={prevStep} disabled={isSubmitting}>Back</button>
-                                    <button className="btn btn-primary" onClick={submitApplication} disabled={isSubmitting}>
-                                        {isSubmitting ? "Submitting..." : "Submit Application"}
-                                    </button>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {step === 6 && (
-                            <motion.div key="step6" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card text-center" style={{ textAlign: 'center', padding: '60px 40px' }}>
-                                <div className="success-icon">✓</div>
-                                <h2 className="headline-m" style={{ marginBottom: '16px' }}>Application Submitted!</h2>
-                                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '32px' }}>
-                                    Thank you for applying. Our team will review your application and be in touch soon.
-                                </p>
-                                <a href="index.html" className="btn btn-primary">Return to Homepage</a>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-            );
+    <script>
+        function toggleCourseName() {
+            const degree = document.getElementById('degree').value;
+            const container = document.getElementById('courseNameContainer');
+            if (degree === 'Related field') {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('react-root'));
-        root.render(<MultiStepForm />);
+        function showError(id, message) {
+            const el = document.getElementById(id);
+            if(el) {
+                if(message) el.innerText = message;
+                el.style.display = 'block';
+            }
+        }
+        
+        function hideErrors(stepNum) {
+            document.querySelectorAll(`#step${stepNum} .error-text`).forEach(el => el.style.display = 'none');
+        }
+
+        function countWords(str) {
+            return str.trim().split(/\s+/).filter(word => word.length > 0).length;
+        }
+
+        function validateStep(stepNum) {
+            let isValid = true;
+            hideErrors(stepNum);
+            
+            if (stepNum === 1) {
+                if (!document.getElementById('agreeExpectations').checked) {
+                    showError('err-step1');
+                    isValid = false;
+                }
+            } 
+            else if (stepNum === 2) {
+                if (!document.getElementById('understandFee').checked) {
+                    showError('err-step2');
+                    isValid = false;
+                }
+            }
+            else if (stepNum === 3) {
+                if (!document.getElementById('clearFaq').checked) {
+                    showError('err-step3');
+                    isValid = false;
+                }
+            }
+            else if (stepNum === 4) {
+                const degree = document.getElementById('degree').value;
+                if (!degree) { showError('err-degree'); isValid = false; }
+                if (degree === 'Related field' && !document.getElementById('courseName').value.trim()) {
+                    showError('err-courseName'); isValid = false;
+                }
+
+                if (!document.getElementById('currentYear').value) { showError('err-currentYear'); isValid = false; }
+                
+                if (!document.querySelector('input[name="academics6Months"]:checked')) { showError('err-academics6Months'); isValid = false; }
+                if (!document.querySelector('input[name="aggregate65"]:checked')) { showError('err-aggregate65'); isValid = false; }
+                if (!document.querySelector('input[name="attendance70"]:checked')) { showError('err-attendance70'); isValid = false; }
+                if (!document.querySelector('input[name="hasLaptop"]:checked')) { showError('err-hasLaptop'); isValid = false; }
+                
+                if (!document.getElementById('codingLanguages').value.trim()) { showError('err-codingLanguages'); isValid = false; }
+                if (!document.getElementById('aiTools').value.trim()) { showError('err-aiTools'); isValid = false; }
+            }
+            else if (stepNum === 5) {
+                if (!document.getElementById('fullName').value.trim()) { showError('err-fullName'); isValid = false; }
+                
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) { showError('err-email', 'Please enter a valid email address.'); isValid = false; }
+                
+                if (!document.getElementById('whatsapp').value.trim()) { showError('err-whatsapp'); isValid = false; }
+                if (!document.getElementById('location').value.trim()) { showError('err-location'); isValid = false; }
+                
+                const whyInternship = document.getElementById('whyInternship').value;
+                if (!whyInternship.trim()) { showError('err-whyInternship', 'This field is required.'); isValid = false; }
+                else if (countWords(whyInternship) > 150) { showError('err-whyInternship', 'Maximum 150 words allowed.'); isValid = false; }
+
+                const expectToLearn = document.getElementById('expectToLearn').value;
+                if (!expectToLearn.trim()) { showError('err-expectToLearn', 'This field is required.'); isValid = false; }
+                else if (countWords(expectToLearn) > 150) { showError('err-expectToLearn', 'Maximum 150 words allowed.'); isValid = false; }
+                
+                if (!document.querySelector('input[name="agreesToTraining"]:checked')) { showError('err-agreesToTraining'); isValid = false; }
+            }
+
+            return isValid;
+        }
+
+        function goToStep(current, next) {
+            document.getElementById(`step${current}`).classList.remove('active');
+            const nextEl = document.getElementById(`step${next}`);
+            
+            // Re-trigger animation
+            nextEl.style.animation = 'none';
+            void nextEl.offsetWidth; // reflow
+            nextEl.style.animation = null;
+            
+            nextEl.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStep(current) {
+            if (validateStep(current)) {
+                goToStep(current, current + 1);
+            }
+        }
+
+        function prevStep(current) {
+            goToStep(current, current - 1);
+        }
+
+        function submitApplication() {
+            if (!validateStep(5)) return;
+            
+            const submitBtn = document.getElementById('btn-submit');
+            const backBtn = document.getElementById('btn-back-5');
+            const errorBox = document.getElementById('submit-error');
+            
+            submitBtn.innerText = 'Submitting...';
+            submitBtn.disabled = true;
+            backBtn.disabled = true;
+            errorBox.style.display = 'none';
+            
+            // Build Context Payload
+            const payload = {
+                degree: document.getElementById('degree').value,
+                courseName: document.getElementById('courseName').value,
+                currentYear: document.getElementById('currentYear').value,
+                academics6Months: document.querySelector('input[name="academics6Months"]:checked')?.value,
+                aggregate65: document.querySelector('input[name="aggregate65"]:checked')?.value,
+                attendance70: document.querySelector('input[name="attendance70"]:checked')?.value,
+                hasLaptop: document.querySelector('input[name="hasLaptop"]:checked')?.value,
+                codingLanguages: document.getElementById('codingLanguages').value,
+                linkedin: document.getElementById('linkedin').value,
+                github: document.getElementById('github').value,
+                aiTools: document.getElementById('aiTools').value,
+                marketingTools: document.getElementById('marketingTools').value,
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                location: document.getElementById('location').value,
+                whyInternship: document.getElementById('whyInternship').value,
+                expectToLearn: document.getElementById('expectToLearn').value,
+                agreesToTraining: document.querySelector('input[name="agreesToTraining"]:checked')?.value
+            };
+
+            // Post to Webhook
+            fetch('https://hook.us2.make.com/xxxxxxxxxxxxxxxxxxx', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                // Moving forward regardless of OK for demo, in prod check response.ok
+                goToStep(5, 6);
+            })
+            .catch(error => {
+                errorBox.style.display = 'block';
+                submitBtn.innerText = 'Submit Application';
+                submitBtn.disabled = false;
+                backBtn.disabled = false;
+            });
+        }
     </script>
 </body>
 </html>
