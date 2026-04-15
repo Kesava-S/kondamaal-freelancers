@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch Programs | Kondamaal Talent Pool</title>
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    <meta name="description" content="Apply for our exclusive multi-stage internship selection program.">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px;
+        }
+        .form-card {
+            background: #fff;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            width: 100%;
+        }
+        .error-text {
+            color: #d93025;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: block;
+        }
+        .req { color: #d93025; }
+        .radio-group-container {
+            margin-bottom: 16px;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+        .radio-group input {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        .check-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            text-align: left;
+        }
+        .check-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+        .check-container label {
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        .faq-list {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .faq-list li {
+            margin-bottom: 16px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .faq-list strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .success-icon {
+            color: var(--success);
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+        .btn-container {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+            justify-content: flex-end;
+        }
+        
+        .highlight-box {
+            background: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin: 20px 0;
+            font-weight: 600;
+            color: #be185d;
+        }
+        
+        @media (max-width: 768px) {
+            .form-card { padding: 24px; }
+            .btn-container { flex-direction: column-reverse; }
+            .btn-container .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="KONDAMAAL"><span>Talent Pool</span></a><div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="industries.html">Industries</a>
+                <a href="employers.html">Employers</a>
+                <a href="launch-programs.html">Launch Programs</a>
+                <a href="contact.html">Contact</a>
+                <a href="talents.html" class="btn btn-secondary"
+                    style="padding: 8px 16px; border-radius: 4px; border: 1px solid var(--border-subtle);">Hire talent</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero container text-center" style="min-height: auto; padding-top: 140px; padding-bottom: 40px;">
+        <h1 class="headline-l">Launch Programs</h1>
+        <p class="subheadline">Apply for our internship selection program.</p>
+    </header>
+
+    <section class="container" style="padding-top: 0;">
+        <div id="react-root"></div>
+    </section>
+
+    <footer style="margin-top: 40px;">
+        <div class="container text-center">
+            <a href="index.html" class="logo mb-24"><img src="assets/img/logo.png" alt="Kondamaal Talent Pool" style="height: 70px;"></a>
+            <div style="margin-bottom: 16px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="case-studies.html">Case Studies</a>
+                <a href="blog.html">Blog</a>
+                <a href="careers.html">Careers</a>
+                <a href="faq.html">FAQ</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 12px;">Address: 7, Coopers Road, London, SE1</p>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">&copy; 2026 Kondamaal Talent Pool by Automaitee Digital</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script type="text/babel">
+        const { useState } = React;
+        const { motion, AnimatePresence } = window.Motion;
+
+        function MultiStepForm() {
+            const [step, setStep] = useState(1);
+            const [formData, setFormData] = useState({
+                degree: '',
+                courseName: '',
+                currentYear: '',
+                academics6Months: '',
+                aggregate65: '',
+                attendance70: '',
+                hasLaptop: '',
+                codingLanguages: '',
+                linkedin: '',
+                github: '',
+                aiTools: '',
+                marketingTools: '',
+                fullName: '',
+                email: '',
+                whatsapp: '',
+                location: '',
+                whyInternship: '',
+                expectToLearn: '',
+                agreesToTraining: ''
+            });
+
+            const [popups, setPopups] = useState({
+                agreeExpectations: false,
+                understandFee: false,
+                clearFaq: false
+            });
+
+            const [formErrors, setFormErrors] = useState({});
+            const [isSubmitting, setIsSubmitting] = useState(false);
+
+            const handleInputChange = (e) => {
+                const { name, value } = e.target;
+                setFormData(prev => ({ ...prev, [name]: value }));
+                if (formErrors[name]) {
+                    setFormErrors(prev => ({ ...prev, [name]: null }));
+                }
+            };
+
+            const handlePopupChange = (e) => {
+                const { name, checked } = e.target;
+                setPopups(prev => ({ ...prev, [name]: checked }));
+                if (formErrors[name]) {
+                    setFormErrors(prev => ({ ...prev, [name]: null }));
+                }
+            };
+
+            const validateStep = (currentStep) => {
+                let errors = {};
+                let isValid = true;
+
+                if (currentStep === 1) {
+                    if (!popups.agreeExpectations) {
+                        errors.agreeExpectations = "You must agree to the expectations to proceed.";
+                        isValid = false;
+                    }
+                } else if (currentStep === 2) {
+                    if (!popups.understandFee) {
+                        errors.understandFee = "You must confirm you understand the fee structure.";
+                        isValid = false;
+                    }
+                } else if (currentStep === 3) {
+                    if (!popups.clearFaq) {
+                        errors.clearFaq = "You must confirm you are clear on the FAQs.";
+                        isValid = false;
+                    }
+                } else if (currentStep === 4) {
+                    const req4 = ['degree', 'currentYear', 'academics6Months', 'aggregate65', 'attendance70', 'hasLaptop', 'aiTools'];
+                    req4.forEach(field => {
+                        if (!formData[field]) {
+                            errors[field] = "This field is required."; break;
+                        }
+                    });
+                    req4.forEach(field => {
+                        if (!formData[field]) {
+                            errors[field] = "This field is required.";
+                            isValid = false;
+                        }
+                    });
+                    if (formData.degree === 'Related field' && !formData.courseName) {
+                        errors.courseName = "Course Name is required.";
+                        isValid = false;
+                    }
+                } else if (currentStep === 5) {
+                    const req5 = ['fullName', 'email', 'whatsapp', 'location', 'whyInternship', 'expectToLearn', 'agreesToTraining'];
+                    req5.forEach(field => {
+                        if (!formData[field] || !formData[field].trim()) {
+                            errors[field] = "This field is required.";
+                            isValid = false;
+                        }
+                    });
+
+                    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+                    if (formData.email && !emailRegex.test(formData.email)) {
+                        errors.email = "Please enter a valid email address.";
+                        isValid = false;
+                    }
+
+                    const phoneRegex = /^\\+?[0-9]{10,15}$/;
+                    if (formData.whatsapp && !phoneRegex.test(formData.whatsapp.replace(/\\s+/g, ''))) {
+                        errors.whatsapp = "Please enter a valid phone number (10-15 digits).";
+                        isValid = false;
+                    }
+
+                    if (formData.whyInternship && formData.whyInternship.split(/\\s+/).filter(w => w.length > 0).length > 150) {
+                        errors.whyInternship = "Maximum 150 words allowed.";
+                        isValid = false;
+                    }
+                }
+
+                setFormErrors(errors);
+                return isValid;
+            };
+
+            const nextStep = () => {
+                if (validateStep(step)) {
+                    setStep(prev => prev + 1);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            };
+
+            const prevStep = () => {
+                setStep(prev => prev - 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const submitApplication = async () => {
+                if (!validateStep(5)) return;
+                setIsSubmitting(true);
+                
+                try {
+                    const webhookUrl = "https://hook.us2.make.com/xxxxxxxxxxxxxxxxxxx";
+                    
+                    // Fire-and-forget or await mock webhook
+                    // For demo purposes, we will mock the delay
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    setIsSubmitting(false);
+                    setStep(6);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } catch (error) {
+                    console.error("Submission failed:", error);
+                    setIsSubmitting(false);
+                    alert("Submission failed. Please try again.");
+                }
+            };
+
+            const variants = {
+                hidden: { opacity: 0, x: 20 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+                exit: { opacity: 0, x: -20, transition: { duration: 0.3 } }
+            };
+
+            return (
+                <div className="app-container">
+                    <AnimatePresence mode="wait">
+                        {step === 1 && (
+                            <motion.div key="step1" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
+                                <h2 className="headline-m mb-24">What we expect from you</h2>
+                                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.6' }}>
+                                    Genuine commitment is demanded for this selection program. Live sessions are mandatory and only 1 prior-notice absence is allowed. Professional discipline is required as you will be working with real clients. We do not tolerate a lack of punctuality or dedication.
+                                </p>
+                                
+                                <div className="check-container">
+                                    <input 
+                                        type="checkbox" 
+                                        id="agreeExpectations" 
+                                        name="agreeExpectations" 
+                                        checked={popups.agreeExpectations}
+                                        onChange={handlePopupChange}
+                                    />
+                                    <label htmlFor="agreeExpectations">I Agree to the expectations</label>
+                                </div>
+                                {formErrors.agreeExpectations && <span className="error-text">{formErrors.agreeExpectations}</span>}
+                                
+                                <div className="btn-container">
+                                    <button className="btn btn-primary" onClick={nextStep}>Next</button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {step === 2 && (
+                            <motion.div key="step2" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
+                                <h2 className="headline-m mb-24">Course fee</h2>
+                                <div className="highlight-box">
+                                    ₹1,000 — one-time, non-refundable
+                                </div>
+                                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.6' }}>
+                                    Shortlisted candidates must pay a course fee of ₹1,000. This covers the administrative costs, live sessions, ad platform accounts, course materials, and task evaluations during your multi-step internship process.
+                                </p>
+                                
+                                <div className="check-container">
+                                    <input 
+                                        type="checkbox" 
+                                        id="understandFee" 
+                                        name="understandFee" 
+                                        checked={popups.understandFee}
+                                        onChange={handlePopupChange}
+                                    />
+                                    <label htmlFor="understandFee">I Understood it.</label>
+                                </div>
+                                {formErrors.understandFee && <span className="error-text">{formErrors.understandFee}</span>}
+                                
+                                <div className="btn-container">
+                                    <button className="btn btn-secondary" onClick={prevStep}>Back</button>
+                                    <button className="btn btn-primary" onClick={nextStep}>Next</button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {step === 3 && (
+                            <motion.div key="step3" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
+                                <h2 className="headline-m mb-24">Frequently asked questions</h2>
+                                <ul className="faq-list">
+                                    <li><strong>1. Certificate course?</strong> No, it's a selection programme for an internship.</li>
+                                    <li><strong>2. What if not selected?</strong> You receive personalized feedback. The fee is non-refundable.</li>
+                                    <li><strong>3. College eligibility?</strong> Open to any college student as long as eligibility criteria are met.</li>
+                                    <li><strong>4. Are sessions recorded?</strong> Yes, but live attendance is mandatory.</li>
+                                    <li><strong>5. When does it start?</strong> Once the batch is confirmed, schedules are emailed to shortlisted candidates.</li>
+                                </ul>
+                                
+                                <div className="check-container">
+                                    <input 
+                                        type="checkbox" 
+                                        id="clearFaq" 
+                                        name="clearFaq" 
+                                        checked={popups.clearFaq}
+                                        onChange={handlePopupChange}
+                                    />
+                                    <label htmlFor="clearFaq">I am clear</label>
+                                </div>
+                                {formErrors.clearFaq && <span className="error-text">{formErrors.clearFaq}</span>}
+                                
+                                <div className="btn-container">
+                                    <button className="btn btn-secondary" onClick={prevStep}>Back</button>
+                                    <button className="btn btn-primary" onClick={nextStep}>Proceed to Application</button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {step === 4 && (
+                            <motion.div key="step4" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                                    <h2 className="headline-m" style={{ marginBottom: 0 }}>Application Form</h2>
+                                    <a href="careers.html" style={{ color: 'var(--text-secondary)', textDecoration: 'underline', fontSize: '0.9rem' }}>Cancel</a>
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label className="form-label">Degree <span className="req">*</span></label>
+                                    <select className="form-select" name="degree" value={formData.degree} onChange={handleInputChange}>
+                                        <option value="">Select Degree</option>
+                                        <option value="CS">Computer Science (CS)</option>
+                                        <option value="IT">Information Technology (IT)</option>
+                                        <option value="BCA">BCA</option>
+                                        <option value="MCA">MCA</option>
+                                        <option value="Related field">Related field</option>
+                                    </select>
+                                    {formErrors.degree && <span className="error-text">{formErrors.degree}</span>}
+                                </div>
+
+                                {formData.degree === 'Related field' && (
+                                    <div className="form-group fade-in-up visible">
+                                        <label className="form-label">Course Name <span className="req">*</span></label>
+                                        <input type="text" className="form-input" name="courseName" value={formData.courseName} onChange={handleInputChange} placeholder="e.g. B.Tech ECE" />
+                                        {formErrors.courseName && <span className="error-text">{formErrors.courseName}</span>}
+                                    </div>
+                                )}
+
+                                <div className="form-group">
+                                    <label className="form-label">Current Year <span className="req">*</span></label>
+                                    <select className="form-select" name="currentYear" value={formData.currentYear} onChange={handleInputChange}>
+                                        <option value="">Select Year</option>
+                                        <option value="3rd Year 4-year course">3rd Year (4-year course)</option>
+                                        <option value="2nd Year 3-year course">2nd Year (3-year course)</option>
+                                        <option value="1st Year Masters">1st Year Masters</option>
+                                    </select>
+                                    {formErrors.currentYear && <span className="error-text">{formErrors.currentYear}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Do you have 6+ months of academic year remaining? <span className="req">*</span></label>
+                                    <div className="radio-group">
+                                        <label><input type="radio" name="academics6Months" value="Yes" checked={formData.academics6Months === 'Yes'} onChange={handleInputChange} /> Yes</label>
+                                        <label><input type="radio" name="academics6Months" value="No" checked={formData.academics6Months === 'No'} onChange={handleInputChange} /> No</label>
+                                    </div>
+                                    {formErrors.academics6Months && <span className="error-text">{formErrors.academics6Months}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Do you have an aggregate of 65% or above? <span className="req">*</span></label>
+                                    <div className="radio-group">
+                                        <label><input type="radio" name="aggregate65" value="Yes" checked={formData.aggregate65 === 'Yes'} onChange={handleInputChange} /> Yes</label>
+                                        <label><input type="radio" name="aggregate65" value="No" checked={formData.aggregate65 === 'No'} onChange={handleInputChange} /> No</label>
+                                    </div>
+                                    {formErrors.aggregate65 && <span className="error-text">{formErrors.aggregate65}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Do you have attendance of 70% or above? <span className="req">*</span></label>
+                                    <div className="radio-group">
+                                        <label><input type="radio" name="attendance70" value="Yes" checked={formData.attendance70 === 'Yes'} onChange={handleInputChange} /> Yes</label>
+                                        <label><input type="radio" name="attendance70" value="No" checked={formData.attendance70 === 'No'} onChange={handleInputChange} /> No</label>
+                                    </div>
+                                    {formErrors.attendance70 && <span className="error-text">{formErrors.attendance70}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Do you have a personal laptop and stable internet? <span className="req">*</span></label>
+                                    <div className="radio-group">
+                                        <label><input type="radio" name="hasLaptop" value="Yes" checked={formData.hasLaptop === 'Yes'} onChange={handleInputChange} /> Yes</label>
+                                        <label><input type="radio" name="hasLaptop" value="No" checked={formData.hasLaptop === 'No'} onChange={handleInputChange} /> No</label>
+                                    </div>
+                                    {formErrors.hasLaptop && <span className="error-text">{formErrors.hasLaptop}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Coding languages known (Optional)</label>
+                                    <input type="text" className="form-input" name="codingLanguages" value={formData.codingLanguages} onChange={handleInputChange} placeholder="e.g. JS, Python" />
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">LinkedIn Profile (Optional)</label>
+                                    <input type="url" className="form-input" name="linkedin" value={formData.linkedin} onChange={handleInputChange} placeholder="https://linkedin.com/..." />
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">GitHub Profile (Optional)</label>
+                                    <input type="url" className="form-input" name="github" value={formData.github} onChange={handleInputChange} placeholder="https://github.com/..." />
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">AI tools used independently <span className="req">*</span></label>
+                                    <input type="text" className="form-input" name="aiTools" value={formData.aiTools} onChange={handleInputChange} placeholder="e.g. ChatGPT, Midjourney, Copilot" />
+                                    {formErrors.aiTools && <span className="error-text">{formErrors.aiTools}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Prior online business marketing tool exposure (Optional)</label>
+                                    <input type="text" className="form-input" name="marketingTools" value={formData.marketingTools} onChange={handleInputChange} placeholder="e.g. Mailchimp, Hootsuite" />
+                                </div>
+
+                                <div className="btn-container">
+                                    <button className="btn btn-secondary" onClick={prevStep}>Back</button>
+                                    <button className="btn btn-primary" onClick={nextStep}>Next</button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {step === 5 && (
+                            <motion.div key="step5" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card">
+                                <h2 className="headline-m mb-24">Final Details</h2>
+                                
+                                <div className="form-group">
+                                    <label className="form-label">Full Name <span className="req">*</span></label>
+                                    <input type="text" className="form-input" name="fullName" value={formData.fullName} onChange={handleInputChange} placeholder="John Doe" />
+                                    {formErrors.fullName && <span className="error-text">{formErrors.fullName}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Email <span className="req">*</span></label>
+                                    <input type="email" className="form-input" name="email" value={formData.email} onChange={handleInputChange} placeholder="john@example.com" />
+                                    {formErrors.email && <span className="error-text">{formErrors.email}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">WhatsApp Number <span className="req">*</span></label>
+                                    <input type="tel" className="form-input" name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} placeholder="+91 9876543210" />
+                                    {formErrors.whatsapp && <span className="error-text">{formErrors.whatsapp}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Location (City) <span className="req">*</span></label>
+                                    <input type="text" className="form-input" name="location" value={formData.location} onChange={handleInputChange} placeholder="Chennai" />
+                                    {formErrors.location && <span className="error-text">{formErrors.location}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Why do you want this internship? <span className="req">*</span> (Max 150 words)</label>
+                                    <textarea className="form-textarea" rows="4" name="whyInternship" value={formData.whyInternship} onChange={handleInputChange} placeholder="Tell us why..."></textarea>
+                                    {formErrors.whyInternship && <span className="error-text">{formErrors.whyInternship}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">What do you expect to learn? <span className="req">*</span></label>
+                                    <textarea className="form-textarea" rows="3" name="expectToLearn" value={formData.expectToLearn} onChange={handleInputChange} placeholder="Your expectations..."></textarea>
+                                    {formErrors.expectToLearn && <span className="error-text">{formErrors.expectToLearn}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">Willing to take training before internship? <span className="req">*</span></label>
+                                    <div className="radio-group">
+                                        <label><input type="radio" name="agreesToTraining" value="Yes" checked={formData.agreesToTraining === 'Yes'} onChange={handleInputChange} /> Yes</label>
+                                        <label><input type="radio" name="agreesToTraining" value="No" checked={formData.agreesToTraining === 'No'} onChange={handleInputChange} /> No</label>
+                                    </div>
+                                    {formErrors.agreesToTraining && <span className="error-text">{formErrors.agreesToTraining}</span>}
+                                </div>
+
+                                <div className="btn-container">
+                                    <button className="btn btn-secondary" onClick={prevStep} disabled={isSubmitting}>Back</button>
+                                    <button className="btn btn-primary" onClick={submitApplication} disabled={isSubmitting}>
+                                        {isSubmitting ? "Submitting..." : "Submit Application"}
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {step === 6 && (
+                            <motion.div key="step6" variants={variants} initial="hidden" animate="visible" exit="exit" className="form-card text-center" style={{ textAlign: 'center', padding: '60px 40px' }}>
+                                <div className="success-icon">✓</div>
+                                <h2 className="headline-m" style={{ marginBottom: '16px' }}>Application Submitted!</h2>
+                                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '32px' }}>
+                                    Thank you for applying. Our team will review your application and be in touch soon.
+                                </p>
+                                <a href="index.html" className="btn btn-primary">Return to Homepage</a>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('react-root'));
+        root.render(<MultiStepForm />);
+    </script>
+</body>
+</html>
