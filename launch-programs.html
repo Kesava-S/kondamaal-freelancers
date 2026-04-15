@@ -149,8 +149,78 @@
     <section class="container" style="padding-top: 0;">
         <div class="app-container">
             
+            <!-- Step 0: Program Details -->
+            <div class="step form-card active" id="step0">
+                <h2 class="headline-m" style="margin-bottom:8px;">Internship Selection Program</h2>
+                <div class="badge" style="margin-bottom: 24px; background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe;">AI Marketing Automation Intern</div>
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom:32px;">
+                    A structured 3-stage programme to select, train, and place the best CS students as AI Marketing Automation Interns at Automaitee Digital.
+                </p>
+
+                <h3 style="margin-bottom: 16px; font-size: 1.25rem;">How It Works</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px;">
+                The programme includes a comprehensive selection process, intensive 1-month remote training, and a final evaluation leading to placement.
+                </p>
+
+                <h3 style="margin-bottom: 16px; font-size: 1.25rem;">Eligibility Criteria (Required)</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">Applicants must meet all of the following requirements:</p>
+                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                    <li>Currently enrolled in Computer Science, IT, BCA, MCA, or a related degree programme</li>
+                    <li>Middle-year undergraduate students or first-year master’s students only <br><span style="font-size:0.85rem; color:var(--text-secondary);">(Final-semester students are not eligible, as the program requires sufficient time and commitment)</span></li>
+                    <li>Minimum 65% aggregate in current academic performance</li>
+                    <li>Minimum 70% attendance in current college</li>
+                    <li>Must have a personal laptop (shared or lab computers are not acceptable)</li>
+                    <li>Must have a stable internet connection at home for live online sessions</li>
+                    <li>Basic understanding of at least one programming language, APIs, or JSON</li>
+                    <li>Must be available for 8 hours per week throughout the 1-month course</li>
+                    <li>Must attend all live sessions</li>
+                    <li>Maximum 1 absence allowed with prior notice before the session starts</li>
+                    <li>Missing a session without prior notice will result in immediate disqualification</li>
+                </ul>
+
+                <h3 style="margin-bottom: 16px; font-size: 1.25rem;">Preferred Qualifications (Not Mandatory)</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">These will increase selection chances:</p>
+                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                    <li>Active GitHub profile with personal or academic projects</li>
+                    <li>Basic exposure to digital marketing tools (Meta Ads Manager, Google Ads, etc.)</li>
+                    <li>Knowledge of JavaScript, APIs, or JSON</li>
+                    <li>Experience using AI tools independently (Claude Code, Claude Cowork, Claude Skills, etc.)</li>
+                    <li>Any freelance work or side projects showing initiative and self-driven learning</li>
+                </ul>
+
+                <h3 style="margin-bottom: 16px; font-size: 1.25rem;">May Reduce Selection Chances</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">These do not disqualify, but may reduce selection chances if competition is high:</p>
+                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                    <li>No coding exposure</li>
+                    <li>No GitHub or personal portfolio</li>
+                    <li>Academic performance below 65%</li>
+                    <li>College attendance below 75% (may indicate lower commitment)</li>
+                </ul>
+
+                <h3 style="margin-bottom: 16px; font-size: 1.25rem; color: #d93025;">Automatic Disqualification (No Exceptions)</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">Applicants will be automatically rejected if any of the following apply:</p>
+                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                    <li>Not from CS, IT, BCA, MCA, or related field</li>
+                    <li>Final-semester student with less than 6 months remaining</li>
+                    <li>Academic aggregate below 65%</li>
+                    <li>College attendance below 70%</li>
+                    <li>No personal laptop</li>
+                    <li>No stable home internet connection</li>
+                    <li>No basic coding knowledge</li>
+                    <li>Missing a live session without prior notice during the course</li>
+                </ul>
+
+                <p style="color: var(--text-primary); font-size: 1.05rem; line-height: 1.6; margin-bottom:32px; font-weight: 500; text-align: center;">
+                    This opportunity is designed for committed students who are willing to learn quickly and actively participate throughout the program.
+                </p>
+
+                <div class="btn-container" style="justify-content: center;">
+                    <button type="button" class="btn btn-primary" style="width:100%; max-width: 300px; font-size: 1.1rem; padding: 16px;" onclick="nextStep(0)">Apply Now</button>
+                </div>
+            </div>
+
             <!-- Step 1: Expectations Popup -->
-            <div class="step form-card active" id="step1">
+            <div class="step form-card" id="step1">
                 <h2 class="headline-m mb-24">What we expect from you</h2>
                 <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; margin-bottom:16px;">
                     This programme demands genuine commitment. Live sessions are mandatory. You are allowed a maximum of one absence during the course, and only if you inform us before the session begins. Missing a session without prior notice results in immediate removal from the programme — no exceptions and no refund.
@@ -446,6 +516,8 @@
             let isValid = true;
             hideErrors(stepNum);
             
+            if (stepNum === 0) return true;
+
             if (stepNum === 1) {
                 if (!document.getElementById('agreeExpectations').checked) {
                     showError('err-step1');
