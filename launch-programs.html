@@ -169,6 +169,70 @@
             line-height: 1.4;
         }
 
+        /* Styled criteria lists */
+        .criteria-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0;
+            margin-bottom: 32px;
+        }
+        .criteria-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .criteria-list li::before {
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+        .eligibility-list li::before { content: '✓'; color: #16a34a; font-size: 1rem; }
+        .preferred-list li::before   { content: '★'; color: #4338ca; font-size: 0.85rem; }
+        .caution-list li::before     { content: '−'; color: #d97706; font-size: 1.2rem; top: -1px; }
+        .disqualify-list li::before  { content: '✕'; color: #d93025; font-size: 0.9rem; }
+
+        /* Section header bands */
+        .section-band {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+        .section-band.green  { background: #f0fdf4; border-left: 4px solid #16a34a; color: #15803d; }
+        .section-band.blue   { background: #eef2ff; border-left: 4px solid #4338ca; color: #3730a3; }
+        .section-band.orange { background: #fffbeb; border-left: 4px solid #d97706; color: #b45309; }
+        .section-band.red    { background: #fef2f2; border-left: 4px solid #d93025; color: #b91c1c; }
+
+        /* FAQ card style */
+        .faq-card {
+            background: var(--bg-secondary, #f9fafb);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            margin-bottom: 10px;
+        }
+        .faq-card .faq-q {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .faq-card .faq-a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
         @media (max-width: 768px) {
             .form-card { padding: 24px; }
             .btn-container { flex-direction: column-reverse; }
@@ -276,9 +340,9 @@
                     </div>
                 </div>
 
-                <h3 style="margin-bottom: 16px; font-size: 1.25rem;">Eligibility Criteria (Required)</h3>
+                <div class="section-band green" style="margin-top: 8px;">✓ Eligibility Criteria <span style="font-weight:400; font-size:0.85rem; opacity:0.75;">(Required — Must meet all)</span></div>
                 <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">Applicants must meet all of the following requirements:</p>
-                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                <ul class="criteria-list eligibility-list">
                     <li>Currently enrolled in Computer Science, IT, BCA, MCA, or a related degree programme</li>
                     <li>Middle-year undergraduate students or first-year master’s students only <br><span style="font-size:0.85rem; color:var(--text-secondary);">(Final-semester students are not eligible, as the program requires sufficient time and commitment)</span></li>
                     <li>Minimum 65% aggregate in current academic performance</li>
@@ -292,9 +356,9 @@
                     <li>Missing a session without prior notice will result in immediate disqualification</li>
                 </ul>
 
-                <h3 style="margin-bottom: 16px; font-size: 1.25rem;">Preferred Qualifications (Not Mandatory)</h3>
+                <div class="section-band blue">★ Preferred Qualifications <span style="font-weight:400; font-size:0.85rem; opacity:0.75;">(Not Mandatory)</span></div>
                 <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">These will increase selection chances:</p>
-                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                <ul class="criteria-list preferred-list">
                     <li>Active GitHub profile with personal or academic projects</li>
                     <li>Basic exposure to digital marketing tools (Meta Ads Manager, Google Ads, etc.)</li>
                     <li>Knowledge of JavaScript, APIs, or JSON</li>
@@ -302,18 +366,18 @@
                     <li>Any freelance work or side projects showing initiative and self-driven learning</li>
                 </ul>
 
-                <h3 style="margin-bottom: 16px; font-size: 1.25rem;">May Reduce Selection Chances</h3>
+                <div class="section-band orange">− May Reduce Selection Chances</div>
                 <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">These do not disqualify, but may reduce selection chances if competition is high:</p>
-                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                <ul class="criteria-list caution-list">
                     <li>No coding exposure</li>
                     <li>No GitHub or personal portfolio</li>
                     <li>Academic performance below 65%</li>
                     <li>College attendance below 75% (may indicate lower commitment)</li>
                 </ul>
 
-                <h3 style="margin-bottom: 16px; font-size: 1.25rem; color: #d93025;">Automatic Disqualification (No Exceptions)</h3>
+                <div class="section-band red">✕ Automatic Disqualification <span style="font-weight:400; font-size:0.85rem; opacity:0.75;">(No Exceptions)</span></div>
                 <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">Applicants will be automatically rejected if any of the following apply:</p>
-                <ul class="faq-list" style="margin-top:0; margin-bottom:32px;">
+                <ul class="criteria-list disqualify-list">
                     <li>Not from CS, IT, BCA, MCA, or related field</li>
                     <li>Final-semester student with less than 6 months remaining</li>
                     <li>Academic aggregate below 65%</li>
@@ -382,13 +446,28 @@
             <!-- Step 3: FAQ Popup -->
             <div class="step form-card" id="step3">
                 <h2 class="headline-m mb-24">Frequently asked questions</h2>
-                <ul class="faq-list">
-                    <li><strong>Q: Is this a certificate course?</strong> A: No. This is a selection programme for an internship. You do not receive a certificate. You receive real skills, real experience, and if you perform well, a role on our team.</li>
-                    <li><strong>Q: What happens if I am not selected after the course?</strong> A: You will receive a personalised email explaining why and what to work on. The ₹1,000 fee is non-refundable — you received a full month of live training on real platforms regardless of selection outcome.</li>
-                    <li><strong>Q: Can I attend if I am from a college not mentioned on the form?</strong> A: Yes. The programme is open to eligible students from any college as long as you meet the eligibility criteria.</li>
-                    <li><strong>Q: Will sessions be recorded?</strong> A: Yes. All live sessions are recorded and shared with enrolled participants only. However attendance to live sessions is still mandatory — recordings are for revision only, not a substitute for being present.</li>
-                    <li><strong>Q: When does the programme start?</strong> A: Applications are open until seats are filled. Once the batch is confirmed, selected students will receive the schedule by email.</li>
-                </ul>
+                <div style="margin: 20px 0 28px;">
+                    <div class="faq-card">
+                        <p class="faq-q">Q: Is this a certificate course?</p>
+                        <p class="faq-a">A: No. This is a selection programme for an internship. You do not receive a certificate. You receive real skills, real experience, and if you perform well, a role on our team.</p>
+                    </div>
+                    <div class="faq-card">
+                        <p class="faq-q">Q: What happens if I am not selected after the course?</p>
+                        <p class="faq-a">A: You will receive a personalised email explaining why and what to work on. The ₹1,000 fee is non-refundable — you received a full month of live training on real platforms regardless of selection outcome.</p>
+                    </div>
+                    <div class="faq-card">
+                        <p class="faq-q">Q: Can I attend if I am from a college not mentioned on the form?</p>
+                        <p class="faq-a">A: Yes. The programme is open to eligible students from any college as long as you meet the eligibility criteria.</p>
+                    </div>
+                    <div class="faq-card">
+                        <p class="faq-q">Q: Will sessions be recorded?</p>
+                        <p class="faq-a">A: Yes. All live sessions are recorded and shared with enrolled participants only. However attendance to live sessions is still mandatory — recordings are for revision only, not a substitute for being present.</p>
+                    </div>
+                    <div class="faq-card">
+                        <p class="faq-q">Q: When does the programme start?</p>
+                        <p class="faq-a">A: Applications are open until seats are filled. Once the batch is confirmed, selected students will receive the schedule by email.</p>
+                    </div>
+                </div>
                 
                 <div class="check-container">
                     <input type="checkbox" id="clearFaq" name="clearFaq" required>
@@ -748,6 +827,7 @@
             
             // Build Context Payload
             const payload = {
+                fromMail: 'applications@kondamaal.com',
                 degree: document.getElementById('degree').value,
                 courseName: document.getElementById('courseName').value,
                 currentYear: document.getElementById('currentYear').value,
@@ -770,7 +850,7 @@
             };
 
             // Post to Webhook
-            fetch('https://hook.us2.make.com/xxxxxxxxxxxxxxxxxxx', {
+            fetch('https://n8n.srv1198607.hstgr.cloud/webhook/automation-intern-apply', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

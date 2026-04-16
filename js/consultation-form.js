@@ -12,7 +12,7 @@
  *  Section 7 — Notes      : all optional
  */
 
-const WEBHOOK_URL = 'https://n8n.srv1198607.hstgr.cloud/webhook-test/book-kondamaal-consultation';
+const WEBHOOK_URL = 'https://n8n.srv1198607.hstgr.cloud/webhook/book-kondamaal-consultation';
 
 /* ─── Validation rules ────────────────────────────────────────────────────── */
 const RULES = [
