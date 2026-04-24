@@ -344,7 +344,7 @@
                 <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">Applicants must meet all of the following requirements:</p>
                 <ul class="criteria-list eligibility-list">
                     <li>Currently enrolled in Computer Science, IT, BCA, MCA, or a related degree programme</li>
-                    <li>Middle-year undergraduate students or first-year master’s students only <br><span style="font-size:0.85rem; color:var(--text-secondary);">(Final-semester students are not eligible, as the program requires sufficient time and commitment)</span></li>
+                    <li>Open to all students (including final-semester students)</li>
                     <li>Minimum 65% aggregate in current academic performance</li>
                     <li>Minimum 70% attendance in current college</li>
                     <li>Must have a personal laptop (shared or lab computers are not acceptable)</li>
@@ -379,7 +379,6 @@
                 <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px;">Applicants will be automatically rejected if any of the following apply:</p>
                 <ul class="criteria-list disqualify-list">
                     <li>Not from CS, IT, BCA, MCA, or related field</li>
-                    <li>Final-semester student with less than 6 months remaining</li>
                     <li>Academic aggregate below 65%</li>
                     <li>College attendance below 70%</li>
                     <li>No personal laptop</li>
@@ -518,14 +517,6 @@
                     <span class="error-text" id="err-currentYear">Please select your current year.</span>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">6+ months academic year remaining <span class="req">*</span></label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="academics6Months" value="Yes"> Yes</label>
-                        <label><input type="radio" name="academics6Months" value="No"> No</label>
-                    </div>
-                    <span class="error-text" id="err-academics6Months">Please select an option.</span>
-                </div>
 
                 <div class="form-group">
                     <label class="form-label">Aggregate 65% or above <span class="req">*</span></label>
@@ -758,7 +749,6 @@
 
                 if (!document.getElementById('currentYear').value) { showError('err-currentYear'); isValid = false; }
                 
-                if (!document.querySelector('input[name="academics6Months"]:checked')) { showError('err-academics6Months'); isValid = false; }
                 if (!document.querySelector('input[name="aggregate65"]:checked')) { showError('err-aggregate65'); isValid = false; }
                 if (!document.querySelector('input[name="attendance70"]:checked')) { showError('err-attendance70'); isValid = false; }
                 if (!document.querySelector('input[name="hasLaptop"]:checked')) { showError('err-hasLaptop'); isValid = false; }
@@ -831,7 +821,6 @@
                 degree: document.getElementById('degree').value,
                 courseName: document.getElementById('courseName').value,
                 currentYear: document.getElementById('currentYear').value,
-                academics6Months: document.querySelector('input[name="academics6Months"]:checked')?.value,
                 aggregate65: document.querySelector('input[name="aggregate65"]:checked')?.value,
                 attendance70: document.querySelector('input[name="attendance70"]:checked')?.value,
                 hasLaptop: document.querySelector('input[name="hasLaptop"]:checked')?.value,
